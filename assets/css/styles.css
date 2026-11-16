@@ -985,6 +985,12 @@ body.nav-open .site-header {
   color: var(--muted);
 }
 
+.hero-meta-bold {
+  font-weight: 700;
+  font-size: clamp(14px, 4vw, 18px);
+  color: var(--red);
+}
+
 .hero-meta span {
   display: inline-flex;
   align-items: center;
