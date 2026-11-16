@@ -405,7 +405,6 @@
 }
 
 /* FIX 2: red button text must be near-black in both themes for AA contrast */
-.btn-red { --btn-fg: #0d0d0c; --btn-fill-fg: #0d0d0c; }
 
 /* ---------- reset ---------- */
 
@@ -917,9 +916,9 @@ hr {
 
 .btn-red {
   --btn-bg: var(--red);
-  --btn-fg: var(--ink);
+  --btn-fg: #0d0d0c;
   --btn-fill: var(--ink);
-  --btn-fill-fg: var(--paper);
+  --btn-fill-fg: #0d0d0c;
 }
 
 .btn-ghost {
