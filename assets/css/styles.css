@@ -176,10 +176,10 @@
   --ink-2: #171715;
   --paper: #f6f6f3;
   --paper-2: #ecece8;
-  --red: #f00000;
-  --red-deep: #b00000;
-  --red-soft: #ff3333;
-  --red-tint: rgba(240, 0, 0, 0.10);
+  --red: #ff0000;
+  --red-deep: #cc0000;
+  --red-soft: #ff5555;
+  --red-tint: rgba(255, 0, 0, 0.10);
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -210,10 +210,10 @@
     --ink-2: oklch(0.19 0.005 95);
     --paper: oklch(0.965 0.003 95);
     --paper-2: oklch(0.93 0.006 95);
-    --red: oklch(0.60 0.25 25);
-    --red-deep: oklch(0.45 0.22 25);
-    --red-soft: oklch(0.72 0.22 25);
-    --red-tint: oklch(0.60 0.25 25 / 0.10);
+    --red: oklch(0.62 0.29 25);
+    --red-deep: oklch(0.48 0.26 25);
+    --red-soft: oklch(0.75 0.24 25);
+    --red-tint: oklch(0.62 0.29 25 / 0.10);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
