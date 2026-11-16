@@ -354,6 +354,16 @@
 ::selection { background: var(--red); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
+::selection {
+  background: var(--red);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
 /* ---------- reset ---------- */
 
 *,
@@ -395,15 +405,7 @@ body {
   -webkit-hyphens: auto;
 }
 
-::selection {
-  background: var(--red);
-  color: var(--ink);
-}
 
-:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
-}
 
 h1, h2, h3, h4, .display {
   text-wrap: balance;
@@ -465,15 +467,7 @@ button {
   cursor: pointer;
 }
 
-::selection {
-  background: var(--red);
-  color: var(--ink);
-}
 
-:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
-}
 
 .skip-link {
   position: fixed;
@@ -4425,4 +4419,21 @@ body.nav-open .site-header {
   .footer-col span,
   .links-foot a,
   .eco-item b a { min-height: 44px; }
+}
+
+/* Honest placeholder for in-development case imagery (no fabricated assets). */
+.case-in-development {
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 7;
+  border: 1px dashed var(--line-strong);
+  background: var(--paper-2);
+}
+.case-in-development span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
