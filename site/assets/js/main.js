@@ -261,6 +261,30 @@
     });
   }
 
+  /* ---------- scroll reveal ---------- */
+  if (!reduceMotion) {
+    const revealTargets = Array.from(document.querySelectorAll(
+      ".section > .wrap, .section-head, .manifesto, .stats, .work-grid > *, .service-list, .process-grid, .friend-grid, .toolbox-inner, .magazine-inner, .cta-inner, .footer-top"
+    ));
+    revealTargets.forEach((el, i) => {
+      el.classList.add("reveal");
+      el.style.setProperty("--reveal-delay", `${Math.min(i * 0.04, 0.24)}s`);
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    revealTargets.forEach((el) => io.observe(el));
+  }
+
   /* ---------- reduced motion: remove marquee duplication jank ---------- */
 
   if (reduceMotion) {
