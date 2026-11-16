@@ -2,7 +2,7 @@
 
 **Owner:** Juggernaut
 **Opened:** 15 November 2026
-**Last audit:** 16 November 2026
+**Last audit:** 16 November 2026 (updated: red logo fix, trend doc, cache-bust deploy)
 **Rule:** Every gap gets an ID. IDs are never reused. Closed gaps stay in the table with a date and evidence.
 
 Priority: `P0` blocks revenue · `P1` losing money or trust now · `P2` costs within 30 days · `P3` hygiene
@@ -19,7 +19,7 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-006 | — | Stale | "Booking Q1 2027" availability line. | `index.html:73`, `links.html:29` | — | CLOSED 16 Nov |
 | JUG-011 | P1 | Leaking | Toolbox templates are mailto requests. | `toolbox.html` | Work is created, no email is captured | OPEN |
 | JUG-005 | — | Leaking | No booking link on the site. | `contact.html` | — | CLOSED 16 Nov |
-| JUG-015 | P2 | Unopened | No `robots.txt`, `sitemap.xml`, 404 page or `llms.txt`. | `site/` | Search engines have no map, no crawl instruction | OPEN |
+| JUG-015 | P2 | Unopened | No `robots.txt`, `sitemap.xml`, 404 page or `llms.txt`. | `site/` | Search engines have no map, no crawl instruction | CLOSED 16 Nov |
 | JUG-016 | P2 | Unverified | Schema markup only on `index.html`. Seven pages have none. | `site/*.html` | Weaker entity signals for search and AI answers | OPEN |
 | JUG-017 | P3 | Stale | Titles run 25–49 characters against a 50–60 target. `index.html` description is 188 characters and truncates. | all pages | Lower click-through in results | OPEN |
 | JUG-009 | — | Fragile | 20 dead images, 13.5 MB. | `site/assets/img/` | — | CLOSED 16 Nov |
@@ -28,7 +28,7 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-007 | — | Stale | Audience agent quoted v1 prices. | `.opencode/agents/audience.md` | — | CLOSED 16 Nov |
 | JUG-008 | — | Unverified | Claimed the pitch deck carried stale v2 prices. | `brand/deck/*.pdf` | — | FALSE 16 Nov |
 
-**Totals:** 1 P0 · 4 P1 · 2 P2 · 1 P3 · 2 blocked · 8 closed · 1 false
+**Totals:** 1 P0 · 4 P1 · 1 P2 · 1 P3 · 2 blocked · 9 closed · 1 false
 
 ---
 
@@ -152,3 +152,4 @@ Largest: work-compleye.png 5.75 MB, work-rashguard.png 0.76 MB,
 | JUG-007 | 16 Nov 2026 | `audience.md` now quotes v2 prices (€1,950 / €2,500 / €2,400 / €750 / €1,800), minimum €750, retainers from €1,950, prices exclude VAT. Budget segment raised to €750–€3,000. | `grep 'The Engine' .opencode/agents/audience.md` |
 | JUG-008 | 16 Nov 2026 | Finding did not hold. Deck carries no prices. | `grep '€\|EUR\|price' docs/DECK-TEXT.txt` → no matches |
 | JUG-001 | 16 Nov 2026 | `git init -b main`, `.gitignore` excludes the 16 reference clones, first commit `ef87502`. 103 files, 30.4 MB. | `git log --oneline` · `git status --porcelain` → 0 changes |
+| JUG-015 | 16 Nov 2026 | Added `robots.txt`, `sitemap.xml`, `404.html`, `llms.txt`, `.nojekyll`. | files present in `site/` |
