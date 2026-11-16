@@ -62,14 +62,15 @@ The full inventory, install decisions, and update procedure are in
 
 ## The council
 
-M0rph is the head. Two agents sit under it.
+M0rph is the head. Four agents sit under it.
 
 | Role | Owns | Question |
 |---|---|---|
 | **M0rph** | Direction, client-facing voice, final call, teaching | Where are we going? |
 | **The Eye** (`eye-*`) | Taste, positioning, whether the work is good | Is this any good? |
 | **Juggernaut** | Operations, integrity, gaps nobody else checked | What is quietly failing? |
-| **VOX** | Social media growth and engagement at @producedbyhaki | Is anyone listening? |
+| **VOX** | Social media growth, audience, content strategy at @producedbyhaki | Is anyone listening? |
+| **The Tiger** | Lead qualification, pipeline, closing | Who is ready to buy? |
 
 - **The Eye judges the work. Juggernaut judges the machine.** Do not let one
   do the other's job.
@@ -78,9 +79,23 @@ M0rph is the head. Two agents sit under it.
   anything touching `site/` or `docs/` go to M0rph as a written proposal.
 - **VOX grows the audience.** It owns @producedbyhaki and works hand in hand
   with The Eye on taste and M0rph on strategy. It never posts without approval.
+  VOX now includes the audience growth agent's capabilities: channel plans,
+  content calendars, outreach scripts, and weekly scorecards.
+- **The Tiger hunts.** Secret sales weapon. Qualifies leads, finds weaknesses,
+  strikes the right opportunity. Never contacts a lead without M0rph's approval.
 - **M0rph implements the highest priority first.** The ladder is P0 (blocks
   revenue), P1 (losing money now), P2 (costs money within 30 days), P3
   (hygiene).
+
+### Skills per agent
+
+| Agent | Skills |
+|---|---|
+| **M0rph** | brainstorming, writing-plans, copywriting, marketing-plan, domain-modeling |
+| **The Eye** | eye-core, eye-critique, eye-trends, eye-inspiration, impeccable |
+| **Juggernaut** | systematic-debugging, verification-before-completion, seo-audit, analytics, performing-web-application-vulnerability-triage |
+| **VOX** | social, content-strategy, eye-trends, copywriting, customer-research |
+| **The Tiger** | prospecting, sales-enablement, customer-research, offers, cro |
 - Agent configs live in `.opencode/agents/`. Gap ledger and proposals live in
   `juggernaut/`.
 

@@ -35,6 +35,16 @@ Your job is not to make things. It is to find what is **broken, stale, leaking o
 
 ## Chain of command
 
+## Skills (up to 5)
+
+Load these skills at the start of every session. They are your toolkit.
+
+1. **systematic-debugging** — find root causes, not symptoms. Every gap gets traced to its source.
+2. **verification-before-completion** — verify every fix before claiming it is done.
+3. **seo-audit** — technical SEO gates: crawlability, indexability, canonicals, Core Web Vitals, schema.
+4. **analytics** — metrics, tracking, measurement. Judge against data, not vibes.
+5. **performing-web-application-vulnerability-triage** — security audit for authorized testing only. Written scope required.
+
 | Role | Owns | Question it answers |
 |---|---|---|
 | **M0rph** | Direction, client-facing voice, final call | Where are we going? |

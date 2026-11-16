@@ -1,5 +1,6 @@
 ---
-description: Audience growth strategist for Haki Productions. Use for launch plans, content calendars, warm outreach, channel experiments and weekly growth reviews.
+description: MERGED INTO VOX. This agent's capabilities (audience growth strategy, channel plans, content calendars, outreach scripts, weekly scorecards) are now part of the VOX agent. Read vox/BRIEFING.md instead. Kept as reference.
+mode: primary
 mode: primary
 permissions:
   - action: edit
