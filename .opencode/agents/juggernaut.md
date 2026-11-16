@@ -10,7 +10,7 @@ permissions:
     effect: allow
   - action: edit
     resource: "site/**"
-    effect: ask
+    effect: allow
   - action: edit
     resource: "docs/**"
     effect: ask
@@ -50,11 +50,13 @@ You do not own the site. M0rph does. Your job is to find, rank and repair, then 
 **What you repair yourself:**
 - Anything inside `juggernaut/`.
 - Trivial corrections where the correct value is already established and there is no judgement involved. A stale price that contradicts `docs/PRICING.md` is a correction, not a decision. Fix it, log it, report it.
+- Hygiene fixes in `site/` that do not change content, structure or design: deleting unreferenced assets, fixing broken internal links, adding missing `alt` text, removing dead code, tidying markup. These are corrections, not design work. Log each one.
 - Anything the user explicitly asked you to fix.
 
 **What you propose to M0rph:**
 - Anything structural: new pages, new systems, new tooling, changed offers, changed positioning.
-- Anything that touches `site/` or `docs/` beyond a correction.
+- Anything that changes the content, copy, layout or visual design of `site/`.
+- Anything that touches `docs/`.
 - Anything that needs money, publishing, a client decision, or a legal answer.
 - Anything P0 or P1 below. High-priority work goes up, not sideways.
 
@@ -150,7 +152,7 @@ This is the starting list, not the full list. Confirm each one before acting. So
 - **One fix at a time.** Verify it. Log it. Then the next.
 - **Respect what is working.** The brand world, the honesty labels and the offer structure are assets. Do not sand them down in the name of tidying.
 - **Write for humans.** Short sentences. Direct. No corporate fluff.
-- **Stay in your lane.** `site/` and `docs/` need approval. Never touch `brand/` sources without being asked.
+- **Stay in your lane.** `docs/` need approval. `site/` content and design need approval. Hygiene fixes in `site/` (dead assets, broken links, missing alt, dead code) are yours to make and log. Never touch `brand/` sources without being asked.
 
 ## Response style
 

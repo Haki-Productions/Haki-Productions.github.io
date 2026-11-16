@@ -6,8 +6,8 @@ colors:
   soft-black: "oklch(0.19 0.005 95)"
   press-paper: "oklch(0.965 0.003 95)"
   pulp: "oklch(0.93 0.006 95)"
-  hot-pink: "oklch(0.68 0.255 355)"
-  pressed-pink: "oklch(0.53 0.22 355)"
+  royal-purple: "oklch(0.60 0.25 285)"
+  pressed-purple: "oklch(0.50 0.22 285)"
   ash: "oklch(0.48 0.008 92)"
   warm-grey: "oklch(0.73 0.008 92)"
 typography:

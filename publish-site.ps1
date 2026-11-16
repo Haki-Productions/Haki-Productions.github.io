@@ -19,7 +19,7 @@ git pull --rebase 2>&1 | Out-Null
 
 # Clear everything except .git, then copy the site (excluding the internal design doc)
 Get-ChildItem -Force -Exclude '.git' | Remove-Item -Recurse -Force
-robocopy $source $publish /E /XF DESIGN.md /NFL /NDL /NJH /NJS /NC /NS | Out-Null
+robocopy $source $publish /E /XF DESIGN.md *.md /XD .impeccable /NFL /NDL /NJH /NJS /NC /NS | Out-Null
 
 git add -A
 $changes = git status --porcelain

@@ -22,13 +22,13 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-015 | P2 | Unopened | No `robots.txt`, `sitemap.xml`, 404 page or `llms.txt`. | `site/` | Search engines have no map, no crawl instruction | OPEN |
 | JUG-016 | P2 | Unverified | Schema markup only on `index.html`. Seven pages have none. | `site/*.html` | Weaker entity signals for search and AI answers | OPEN |
 | JUG-017 | P3 | Stale | Titles run 25–49 characters against a 50–60 target. `index.html` description is 188 characters and truncates. | all pages | Lower click-through in results | OPEN |
-| JUG-009 | P3 | Fragile | 20 images, 13.5 MB, referenced nowhere. | `site/assets/img/` | Dead weight in every deploy | OPEN |
+| JUG-009 | — | Fragile | 20 dead images, 13.5 MB. | `site/assets/img/` | — | CLOSED 16 Nov |
 | JUG-012 | — | Unopened | KvK and BTW setup unconfirmed. | `docs/DECISIONS.md` | Blocks taking deposits without guessing | BLOCKED |
 | JUG-013 | — | Unopened | No case study from a paying client. | `site/work.html` | In-house proves taste, not that Haki can be hired | BLOCKED |
 | JUG-007 | — | Stale | Audience agent quoted v1 prices. | `.opencode/agents/audience.md` | — | CLOSED 16 Nov |
 | JUG-008 | — | Unverified | Claimed the pitch deck carried stale v2 prices. | `brand/deck/*.pdf` | — | FALSE 16 Nov |
 
-**Totals:** 1 P0 · 4 P1 · 2 P2 · 2 P3 · 2 blocked · 7 closed · 1 false
+**Totals:** 1 P0 · 4 P1 · 2 P2 · 1 P3 · 2 blocked · 8 closed · 1 false
 
 ---
 
