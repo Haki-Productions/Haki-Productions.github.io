@@ -1,11 +1,22 @@
 /* ============================================================
-   HAKI PRODUCTIONS — design system v2
-   Black + paper first. Pink is a splash, never the base.
-   Display: Anton · Accent: Instrument Serif · Body: Instrument Sans
-   Labels: Space Mono. Color: OKLCH with sRGB fallbacks.
+   HAKI PRODUCTIONS — design system v3 (red-led)
+   Black + paper first. Red #FF0000 is the main action colour.
+   H1/Display: Mirage Gothic · Body: Bahnschrift · Labels: Space Mono
+   Accent: Instrument Serif. Color: OKLCH with sRGB fallbacks.
    ============================================================ */
 
 /* ---------- self-hosted fonts ---------- */
+
+@font-face {
+  font-family: "Mirage Gothic";
+  src: url("../fonts/mirage-gothic-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+/* Bahnschrift is a Windows system font — no webfont file. Reference by name;
+   falls back to Instrument Sans where unavailable. Drop bahnschrift.woff2 in
+   assets/fonts and add an @font-face here to embed it everywhere. */
 
 @font-face {
   font-family: "Anton";
@@ -170,22 +181,23 @@
 }
 
 :root {
-  /* Brand palette — purple-led, black ground, green action, crimson accent.
-     Source: eye/design-system/haki-DESIGN.md */
+  /* Brand palette — RED-led (head decision 2026-11-16).
+     Main action colour: original pure red #FF0000, black text on it (4.79:1 AA).
+     Purple is no longer the main colour; green kept as small focus/accent signal. */
   --ink: #0F0F0F;          /* King of Darkness Black — ground */
   --ink-2: #171715;        /* soft black — image grounds */
   --paper: #F4F4F4;        /* Text — foreground on dark */
   --paper-2: #ecece8;      /* Pulp — secondary paper */
-  --purple: #590E5B;       /* Lord Purple — main brand colour */
-  --green: #50E411;        /* Envenom Green — primary action / button / focus */
-  --crimson: #EF1B1B;      /* Regent Crimson — warm red accent (across the board) */
-  --yellow: #F5E411;       /* Button 2 */
-  --copper: #C25A36;       /* thin divider rules */
-  --red: #50E411;          /* action alias -> green; text always black */
-  --red-deep: #590E5B;     /* legacy alias -> purple */
-  --red-soft: #EF1B1B;     /* legacy alias -> crimson */
-  --red-tint: rgba(80, 228, 17, 0.10);  /* green focus tint */
-  --accent-ink: #590E5B;   /* text accent on paper: purple */
+  --red: #FF0000;          /* MAIN: original pure red — buttons, CTAs, bands, focus */
+  --red-deep: #C00000;     /* deep red — small text accent on paper (5.98:1 AA) */
+  --red-soft: #FF3333;     /* soft red */
+  --red-tint: rgba(255, 0, 0, 0.10);  /* red focus tint */
+  --green: #50E411;        /* Envenom Green — tertiary focus/accent signal only */
+  --purple: #590E5B;       /* Lord Purple — tertiary accent, demoted from main */
+  --crimson: #FF0000;      /* Regent Crimson -> original pure red */
+  --yellow: #F5E411;       /* Button 2 (assumed) */
+  --copper: #C25A36;       /* thin divider rules (assumed) */
+  --accent-ink: #C00000;   /* text accent on paper: deep red */
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -193,9 +205,9 @@
   --line-dark: rgba(246, 246, 243, 0.18);
   --line-dark-strong: rgba(246, 246, 243, 0.34);
 
-  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Mirage Gothic", "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
-  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Bahnschrift", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
 
   --max: 1440px;
@@ -207,6 +219,7 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --measure: 62ch;
+  color-scheme: light;
   --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 }
 
@@ -217,23 +230,64 @@
     --ink-2: oklch(0.19 0.005 95);
     --paper: oklch(0.965 0 0);
     --paper-2: oklch(0.93 0.006 95);
-    --purple: oklch(0.42 0.16 320);
+    --red: oklch(0.628 0.258 29);
+    --red-deep: oklch(0.5 0.22 29);
+    --red-soft: oklch(0.72 0.19 29);
+    --red-tint: oklch(0.628 0.258 29 / 0.10);
     --green: oklch(0.83 0.26 135);
-    --crimson: oklch(0.62 0.24 25);
+    --purple: oklch(0.42 0.16 320);
+    --crimson: oklch(0.628 0.258 29);
     --yellow: oklch(0.91 0.19 100);
     --copper: oklch(0.56 0.14 45);
-    --red: oklch(0.83 0.26 135);
-    --red-deep: oklch(0.42 0.16 320);
-    --red-soft: oklch(0.62 0.24 25);
-    --red-tint: oklch(0.83 0.26 135 / 0.10);
-    --accent-ink: oklch(0.42 0.16 320);
+    --accent-ink: oklch(0.5 0.22 29);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --ink: oklch(0.965 0 0);
+      --ink-2: oklch(0.93 0.006 95);
+      --paper: oklch(0.142 0 0);
+      --paper-2: oklch(0.19 0.005 95);
+      --muted: oklch(0.73 0.008 92);
+      --muted-dark: oklch(0.48 0.008 92);
+      --line: oklch(0.965 0 0 / 0.18);
+      --line-strong: oklch(0.965 0 0 / 0.34);
+      --line-dark: oklch(0.142 0 0 / 0.16);
+      --line-dark-strong: oklch(0.142 0 0 / 0.34);
+      --accent-ink: oklch(0.72 0.19 29);
+    }
+    .dark, .dark-page, .dark-hero, .magazine-band, .cta, .site-footer, .mag-hero, .ticker {
+      --accent-ink: oklch(0.5 0.22 29);
+    }
+  }
 }
 
-/* Text accent flips with ground: green on dark, black on the green band.
-   Purple default (on paper) is set in :root above. */
+
+/* ---------- system lighting: dark mode (hex fallback) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ink: #F4F4F4;
+    --ink-2: #ecece8;
+    --paper: #0F0F0F;
+    --paper-2: #171715;
+    --muted: #aaa59a;
+    --muted-dark: #6d6961;
+    --line: rgba(244, 244, 244, 0.18);
+    --line-strong: rgba(244, 244, 244, 0.34);
+    --line-dark: rgba(15, 15, 15, 0.16);
+    --line-dark-strong: rgba(15, 15, 15, 0.34);
+    --accent-ink: #FF1A1A;
+  }
+  .dark, .dark-page, .dark-hero, .magazine-band, .cta, .site-footer, .mag-hero, .ticker {
+    --accent-ink: #C00000;
+  }
+}
+
+/* Text accent flips with ground: bright red on dark, black on the red band.
+   Deep red default (on paper) is set in :root above. */
 .dark,
 .dark-page,
 .dark-hero,
@@ -242,10 +296,10 @@
 .site-footer,
 .mag-hero,
 .ticker {
-  --accent-ink: #50E411;
+  --accent-ink: #FF1A1A; /* bright red on dark ground */
 }
 .toolbox-band {
-  --accent-ink: #0F0F0F; /* black on the green band */
+  --accent-ink: #0F0F0F; /* black on the red band */
 }
 
 /* ---------- reset ---------- */
