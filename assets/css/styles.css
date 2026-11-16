@@ -169,16 +169,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@font-face {
-  font-family: "GothicPunk";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/GothicPunk.ttf") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-
 :root {
   --ink: #0d0d0c;
   --ink-2: #171715;
@@ -195,7 +185,7 @@
   --line-dark: rgba(246, 246, 243, 0.18);
   --line-dark-strong: rgba(246, 246, 243, 0.34);
 
-  --font-display: "GothicPunk", "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
@@ -379,7 +369,7 @@ hr {
   font-weight: 400;
   font-size: clamp(44px, 7.6vw, 118px);
   line-height: 0.86;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   text-wrap: balance;
   text-box: trim-both cap alphabetic;
@@ -934,7 +924,7 @@ body.nav-open .site-header {
   font-family: var(--font-display);
   font-size: clamp(58px, 9.7vw, 148px);
   line-height: 0.81;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   text-box: trim-both cap alphabetic;
 }
@@ -1632,7 +1622,7 @@ body.nav-open .site-header {
   font-weight: 400;
   font-size: clamp(66px, 15.4vw, 236px);
   line-height: 0.78;
-  letter-spacing: -0.035em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   text-box: trim-both cap alphabetic;
 }
@@ -3139,7 +3129,7 @@ body.nav-open .site-header {
   font-weight: 400;
   font-size: clamp(58px, 14.4vw, 222px);
   line-height: 0.78;
-  letter-spacing: -0.035em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   text-box: trim-both cap alphabetic;
 }
