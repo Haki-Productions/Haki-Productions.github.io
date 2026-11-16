@@ -234,3 +234,27 @@ means one of three things:
 
 Do not cut the price alone. A lower number with the same promise is how the
 business ends up busy and broke.
+
+## 9. Current public pricing policy (16 November 2026)
+
+The site no longer publishes project prices. Only the monthly retainer is shown:
+retainers from **EUR 1,950 per month**. Every project is scoped per brief and quoted
+on a call.
+
+Why: a visible price list invites comparison against freelancers and filters out
+buyers who would have paid more. Conversation first, quote second. Booking goes
+to Cal.com (https://cal.com/hakiproductions), not to a form that asks for a
+budget range.
+
+What changed on the site:
+
+- Project offer cards show "On request" instead of a number.
+- The contact form no longer asks for a budget range; it asks how the visitor
+  wants to work.
+- All "Book a call" buttons open Cal.com (intro, engine, launch, identity,
+  press kit, recap).
+- The availability line reads "Open for new projects".
+
+The internal numbers (v2, in section 1) still apply when quoting. Do not publish
+them on the site. When the custom domain lands, update canonicals and og:image
+in site/*.html from https://haki-productions.github.io to the new domain.
