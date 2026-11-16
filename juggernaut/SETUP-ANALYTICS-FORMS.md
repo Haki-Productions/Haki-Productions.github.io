@@ -1,55 +1,39 @@
 # Setup: Analytics and Form Endpoint
 
-**Status:** Snippets installed. Account creation needed (5 minutes).
-**Owner:** Juggernaut (prepared) + M0rph (account creation)
-**Gaps:** JUG-003 (analytics), JUG-004 (form endpoint)
+**Status:** ✅ Both accounts created. Snippets configured. Republished.
+**Owner:** Juggernaut (prepared) + M0rph (account creation — DONE)
+**Gaps:** JUG-003 (analytics — CLOSED), JUG-004 (form endpoint — CLOSED)
 
 ## 1. Analytics — GoatCounter
 
-**What was done:** A GoatCounter tracking snippet was added to the `<head>` of all 9 HTML pages (8 site pages + 404.html).
+**Status:** ✅ Done. Account: https://hakiproductions.goatcounter.com/
 
-**What you need to do (2 minutes):**
-1. Go to https://www.goatcounter.com/signup and create a free account.
-2. Choose a site code (e.g., `hakiproductions`).
-3. Replace `hakiproductions` in the snippet with your actual code:
-   ```html
-   <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-   ```
-4. Find-and-replace `hakiproductions.goatcounter.com` → `YOURCODE.goatcounter.com` across all `site/*.html`.
-5. Republish: `powershell -NoProfile -ExecutionPolicy Bypass -File publish-site.ps1`
+**What was done:** GoatCounter tracking snippet added to the `<head>` of all 9 HTML pages. Account code: `hakiproductions`. No placeholder — already live.
 
-**Why GoatCounter:** Free for non-commercial use, privacy-friendly (no cookies, no personal data), lightweight (single script), GDPR-compliant. Plausible (€9/mo) and Umami (self-hosted) are alternatives if you want more features later.
+**Verification:** Open https://hakiproductions.goatcounter.com/ to see the dashboard. Traffic will appear after the next visitor.
 
 ## 2. Form endpoint — Formspree
 
-**What was done:** The contact form was converted from mailto to a POST form targeting Formspree. The mailto fallback link is preserved below the form.
+**Status:** ✅ Done. Form ID: `mnpdprgg`. Endpoint: https://formspree.io/f/mnpdprgg
 
-**What you need to do (3 minutes):**
-1. Go to https://formspree.io and create a free account.
-2. Create a new form. You will get a form ID (e.g., `xpwzabcd`).
-3. Replace `YOUR_FORM_ID` in `site/contact.html`:
-   ```html
-   <form class="form-grid" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-4. Republish: `powershell -NoProfile -ExecutionPolicy Bypass -File publish-site.ps1`
-5. Test: submit the form and confirm the email arrives at producedbyhaki@gmail.com.
+**What was done:** Contact form converted from mailto to Formspree POST. Form ID `mnpdprgg` configured. Mailto fallback preserved below the form. Hidden fields: `_subject` and `_next`.
 
-**Free tier:** 50 submissions/month. Enough for a new agency. Upgrade to paid (€10/mo) if you need more.
-
-**Alternative:** Tally (https://tally.so) — free, unlimited submissions, embeddable. Requires replacing the form with a Tally embed instead of Formspree.
+**Verification:** Submit the form at https://haki-productions.github.io/contact.html and confirm email arrives at producedbyhaki@gmail.com.
 
 ## 3. Toolbox capture (JUG-011)
 
-The toolbox still uses mailto for template requests. To capture emails:
+**Status:** ⏳ Pending. Mailto still used. Can be upgraded to Formspree in a follow-up.
+
+Options:
 - Option A: Add a Formspree form to `toolbox.html` that collects email + template name, then sends the template link.
-- Option B: Use Tally to embed a form that collects email and auto-sends the template.
+- Option B: Use Tally (https://tally.so) to embed a form that collects email and auto-sends the template.
 - Option C: Keep mailto (works now that the email address is fixed) and accept lower capture rates.
 
 Recommended: Option A, same Formspree account as the contact form.
 
 ## 4. After setup
 
-Once both accounts are created:
-- Update `juggernaut/LEDGER.md`: close JUG-003 and JUG-004.
-- Add the analytics dashboard URL to `docs/DECISIONS.md`.
+- Update `juggernaut/LEDGER.md`: JUG-003 and JUG-004 closed. ✅ Done.
+- Analytics dashboard: https://hakiproductions.goatcounter.com/
+- Formspree dashboard: https://formspree.io/forms/mnpdprgg
 - Set a monthly reminder to check GoatCounter stats.
