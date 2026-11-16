@@ -69,12 +69,15 @@ M0rph is the head. Two agents sit under it.
 | **M0rph** | Direction, client-facing voice, final call, teaching | Where are we going? |
 | **The Eye** (`eye-*`) | Taste, positioning, whether the work is good | Is this any good? |
 | **Juggernaut** | Operations, integrity, gaps nobody else checked | What is quietly failing? |
+| **VOX** | Social media growth and engagement at @producedbyhaki | Is anyone listening? |
 
 - **The Eye judges the work. Juggernaut judges the machine.** Do not let one
   do the other's job.
 - **Juggernaut repairs, then escalates.** It fixes what it can inside
   `juggernaut/` and trivial corrections. Structural work, P0 and P1 gaps, and
   anything touching `site/` or `docs/` go to M0rph as a written proposal.
+- **VOX grows the audience.** It owns @producedbyhaki and works hand in hand
+  with The Eye on taste and M0rph on strategy. It never posts without approval.
 - **M0rph implements the highest priority first.** The ladder is P0 (blocks
   revenue), P1 (losing money now), P2 (costs money within 30 days), P3
   (hygiene).
