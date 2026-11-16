@@ -17,18 +17,18 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-001 | — | Unopened | No git repository. | project root | — | CLOSED 16 Nov |
 | JUG-003 | — | Unopened | No analytics. | all pages | — | CLOSED 16 Nov |
 | JUG-006 | — | Stale | "Booking Q1 2027" availability line. | `index.html:73`, `links.html:29` | — | CLOSED 16 Nov |
-| JUG-011 | P1 | Leaking | Toolbox templates are mailto requests. | `toolbox.html` | Work is created, no email is captured | OPEN |
+| JUG-011 | — | Leaking | Toolbox templates are mailto requests. | `toolbox.html` | — | CLOSED 16 Nov |
 | JUG-005 | — | Leaking | No booking link on the site. | `contact.html` | — | CLOSED 16 Nov |
 | JUG-015 | P2 | Unopened | No `robots.txt`, `sitemap.xml`, 404 page or `llms.txt`. | `site/` | Search engines have no map, no crawl instruction | CLOSED 16 Nov |
-| JUG-016 | P2 | Unverified | Schema markup only on `index.html`. Seven pages have none. | `site/*.html` | Weaker entity signals for search and AI answers | OPEN |
-| JUG-017 | P3 | Stale | Titles run 25–49 characters against a 50–60 target. `index.html` description is 188 characters and truncates. | all pages | Lower click-through in results | OPEN |
+| JUG-016 | — | Unverified | Schema markup only on `index.html`. Seven pages have none. | `site/*.html` | — | CLOSED 16 Nov |
+| JUG-017 | — | Stale | Titles run 25-49 characters against a 50-60 target. `index.html` description is 188 characters and truncates. | all pages | — | CLOSED 16 Nov |
 | JUG-009 | — | Fragile | 20 dead images, 13.5 MB. | `site/assets/img/` | — | CLOSED 16 Nov |
 | JUG-012 | — | Unopened | KvK and BTW setup unconfirmed. | `docs/DECISIONS.md` | Blocks taking deposits without guessing | BLOCKED |
 | JUG-013 | — | Unopened | No case study from a paying client. | `site/work.html` | In-house proves taste, not that Haki can be hired | BLOCKED |
 | JUG-007 | — | Stale | Audience agent quoted v1 prices. | `.opencode/agents/audience.md` | — | CLOSED 16 Nov |
 | JUG-008 | — | Unverified | Claimed the pitch deck carried stale v2 prices. | `brand/deck/*.pdf` | — | FALSE 16 Nov |
 
-**Totals:** 1 P0 · 1 P1 · 1 P2 · 1 P3 · 2 blocked · 10 closed · 1 false
+**Totals:** 1 P0 · 0 P1 · 0 P2 · 0 P3 · 2 blocked · 13 closed · 1 false
 
 ---
 
