@@ -190,7 +190,7 @@
   --paper: #F4F4F4;        /* Text: foreground on dark */
   --paper-2: #ecece8;      /* Pulp: secondary paper */
   --red: #FF0000;          /* MAIN: original pure red: buttons, CTAs, bands, focus */
-  --red-deep: #FF0000;     /* deep red: small text accent on paper (5.98:1 AA) */
+  --red-deep: #000080;     /* navy: small text accent on paper (14.56:1 AA) */
   --red-soft: #FF0000;     /* soft red */
   --red-tint: rgba(255, 0, 0, 0.10);  /* red focus tint */
   --green: #50E411;        /* Envenom Green: tertiary focus/accent signal only */
@@ -198,7 +198,8 @@
   --crimson: #FF0000;      /* Regent Crimson -> original pure red */
   --yellow: #F5E411;       /* Button 2 (assumed) */
   --copper: #C25A36;       /* thin divider rules (assumed) */
-  --accent-ink: #FF0000;   /* text accent on paper: deep red */
+  --navy: #000080;         /* navy: accent on paper */
+  --accent-ink: #000080;   /* text accent on paper: navy (14.56:1 AA) */
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -240,7 +241,8 @@
     --crimson: oklch(0.628 0.258 29);
     --yellow: oklch(0.91 0.19 100);
     --copper: oklch(0.56 0.14 45);
-    --accent-ink: oklch(0.628 0.258 29);
+    --navy: oklch(0.32 0.15 265);
+    --accent-ink: oklch(0.32 0.15 265);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
@@ -295,7 +297,7 @@
   --muted: #6d6961; --muted-dark: #aaa59a;
   --line: rgba(15,15,15,0.16); --line-strong: rgba(15,15,15,0.34);
   --line-dark: rgba(244,244,244,0.18); --line-dark-strong: rgba(244,244,244,0.34);
-  --accent-ink: #C00000;
+  --accent-ink: #000080;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -311,7 +313,7 @@
     --muted: oklch(0.48 0.008 92); --muted-dark: oklch(0.73 0.008 92);
     --line: oklch(0.142 0 0 / 0.16); --line-strong: oklch(0.142 0 0 / 0.34);
     --line-dark: oklch(0.965 0 0 / 0.18); --line-dark-strong: oklch(0.965 0 0 / 0.34);
-    --accent-ink: oklch(0.5 0.22 29);
+    --accent-ink: oklch(0.32 0.15 265);
   }
   :root[data-theme="dark"] {
     --ink: oklch(0.965 0 0); --ink-2: oklch(0.93 0.006 95); --paper: oklch(0.142 0 0); --paper-2: oklch(0.19 0.005 95);
@@ -328,7 +330,7 @@
   :root[data-theme="dark"] .site-footer,
   :root[data-theme="dark"] .mag-hero,
   :root[data-theme="dark"] .ticker {
-    --accent-ink: oklch(0.5 0.22 29);
+    --accent-ink: oklch(0.72 0.19 29);
   }
 }
 :root[data-theme="dark"] .dark,
@@ -339,11 +341,11 @@
 :root[data-theme="dark"] .site-footer,
 :root[data-theme="dark"] .mag-hero,
 :root[data-theme="dark"] .ticker {
-  --accent-ink: #C00000;
+  --accent-ink: #FF1A1A;
 }
 
 /* Text accent flips with ground: bright red on dark, black on the red band.
-   Deep red default (on paper) is set in :root above. */
+   Navy default (on paper) is set in :root above. */
 .dark,
 .dark-page,
 .dark-hero,
@@ -372,6 +374,38 @@
   outline: 2px solid var(--red);
   outline-offset: 3px;
 }
+
+
+/* ---------- Eye-test fix: keep "dark" sections dark in dark mode ---------- */
+@media (prefers-color-scheme: dark) {
+  .dark, .dark-page, .magazine-band, .cta, .site-footer, .mag-hero {
+    background: #0a0a0a;
+    color: var(--paper);
+  }
+}
+:root[data-theme="dark"] .dark,
+:root[data-theme="dark"] .dark-page,
+:root[data-theme="dark"] .magazine-band,
+:root[data-theme="dark"] .cta,
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .mag-hero {
+  background: #0a0a0a;
+  color: var(--paper);
+}
+@supports (color: oklch(0.5 0.2 20)) {
+  @media (prefers-color-scheme: dark) {
+    .dark, .dark-page, .magazine-band, .cta, .site-footer, .mag-hero { background: oklch(0.14 0 0); }
+  }
+  :root[data-theme="dark"] .dark,
+  :root[data-theme="dark"] .dark-page,
+  :root[data-theme="dark"] .magazine-band,
+  :root[data-theme="dark"] .cta,
+  :root[data-theme="dark"] .site-footer,
+  :root[data-theme="dark"] .mag-hero { background: oklch(0.14 0 0); }
+}
+
+/* FIX 2: red button text must be near-black in both themes for AA contrast */
+.btn-red { --btn-fg: #0d0d0c; --btn-fill-fg: #0d0d0c; }
 
 /* ---------- reset ---------- */
 
