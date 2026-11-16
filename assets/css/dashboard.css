@@ -355,7 +355,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
 
 .stage-pill[data-stage="Qualified"] { border-color: var(--red); color: var(--red-deep); }
 .stage-pill[data-stage="Proposal sent"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.stage-pill[data-stage="Closed (won)"] { background: var(--red); border-color: var(--red); color: var(--ink); }
+.stage-pill[data-stage="Closed (won)"] { /* action chip */ background: var(--red); border-color: var(--red); color: var(--ink); }
 
 .flag {
   font-family: var(--font-mono);
