@@ -36,7 +36,7 @@
   height: 5px;
   margin: 0 10px 2px 0;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
   vertical-align: middle;
 }
 
@@ -208,7 +208,7 @@
   transition: width 0.35s var(--ease-out);
 }
 
-.funnel-row:first-child .funnel-fill { background: var(--red); }
+.funnel-row:first-child .funnel-fill { background: var(--action); }
 
 .funnel-count {
   font-family: var(--font-mono);
@@ -353,9 +353,9 @@ table.data tbody tr:hover { background: var(--paper-2); }
   white-space: nowrap;
 }
 
-.stage-pill[data-stage="Qualified"] { border-color: var(--red); color: var(--red-deep); }
+.stage-pill[data-stage="Qualified"] { border-color: var(--action); color: var(--red-deep); }
 .stage-pill[data-stage="Proposal sent"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.stage-pill[data-stage="Closed (won)"] { /* action chip */ background: var(--red); border-color: var(--red); color: var(--ink); }
+.stage-pill[data-stage="Closed (won)"] { /* action chip */ background: var(--action); border-color: var(--action); color: var(--ink); }
 
 .flag {
   font-family: var(--font-mono);
@@ -443,7 +443,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
 .field input:focus-visible,
 .field select:focus-visible,
 .field textarea:focus-visible {
-  border-bottom-color: var(--red);
+  border-bottom-color: var(--action);
 }
 
 .field.full { grid-column: 1 / -1; }
@@ -566,7 +566,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
 
 .objection-body .say {
   padding: 14px 16px;
-  border-left: 2px solid var(--red);
+  border-left: 2px solid var(--action);
   background: var(--paper-2);
 }
 
@@ -692,7 +692,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
 }
 
 .kanban-col.drop-target {
-  border-color: var(--red);
+  border-color: var(--action);
   background: var(--red-tint);
 }
 
@@ -761,7 +761,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
   transition: border-color 0.18s var(--ease-out), color 0.18s var(--ease-out);
 }
 
-.kanban-add:hover { border-color: var(--red); color: var(--red-deep); }
+.kanban-add:hover { border-color: var(--action); color: var(--red-deep); }
 
 .kcard {
   padding: 14px;
@@ -772,7 +772,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
   transition: transform 0.18s var(--ease-out), border-color 0.18s var(--ease-out);
 }
 
-.kcard:hover { border-color: var(--red); transform: translateY(-2px); }
+.kcard:hover { border-color: var(--action); transform: translateY(-2px); }
 .kcard:active { cursor: grabbing; }
 .kcard.dragging { opacity: 0.4; transform: none; }
 
@@ -914,7 +914,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
 }
 
 .gate-field input:focus {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--action);
   outline-offset: 1px;
 }
 
@@ -924,7 +924,7 @@ table.data tbody tr:hover { background: var(--paper-2); }
   margin: 16px 0 0;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--red);
+  color: var(--action);
 }
 
 @media (max-width: 480px) {

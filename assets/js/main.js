@@ -294,8 +294,29 @@
         }
         themeMeta.setAttribute("content", resolved === "dark" ? "#0d0d0c" : "#f2eee5");
       }
+      // Theme-aware mark: green on light grounds, red on dark grounds.
+      syncMark();
     };
+
+    const syncMark = () => {
+      let resolved = current;
+      if (current === "auto") {
+        resolved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      const file = resolved === "dark" ? "haki-mark-red.png" : "haki-mark-green.png";
+      document.querySelectorAll('img[src*="haki-mark"]').forEach((img) => {
+        img.src = img.src.replace(/haki-mark-(red|green|navy)\.png/, file);
+      });
+      const favicon = document.querySelector('link[rel="icon"][href*="haki-mark"]');
+      if (favicon) favicon.href = favicon.href.replace(/haki-mark-(red|green|navy)\.png/, file);
+    };
+
     render();
+
+    if (window.matchMedia) {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      if (mq.addEventListener) mq.addEventListener("change", () => { if (current === "auto") render(); });
+    }
 
     themeToggle.addEventListener("click", () => {
       const s = states.find((x) => x.key === current);

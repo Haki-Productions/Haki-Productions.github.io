@@ -189,10 +189,10 @@
   --ink-2: #171715;        /* soft black: image grounds */
   --paper: #F4F4F4;        /* Text: foreground on dark */
   --paper-2: #ecece8;      /* Pulp: secondary paper */
-  --red: #FF0000;          /* signal red: focus dots, accents, duotone */
-  --action: #000080;       /* PRIMARY ACTION light: navy fill */
-  --on-action: #F4F4F4;    /* text on navy action: white (14.56:1) */
-  --red-deep: #000080;     /* navy: small text accent on paper (14.56:1 AA) */
+  --red: #FF0000;          /* nuclear red token (dark mode + reference) */
+  --action: #50E411;       /* PRIMARY ACTION light: envenom green fill */
+  --on-action: #0F0F0F;    /* text on green action: black (11.36:1) */
+  --red-deep: #1B5E20;     /* deep green: small text accent on paper (7.15:1 AA) */
   --red-soft: #FF0000;     /* soft red */
   --red-tint: rgba(255, 0, 0, 0.10);  /* red focus tint */
   --green: #50E411;        /* Envenom Green: tertiary focus/accent signal only */
@@ -200,8 +200,8 @@
   --crimson: #FF0000;      /* Regent Crimson -> original pure red */
   --yellow: #F5E411;       /* Button 2 (assumed) */
   --copper: #C25A36;       /* thin divider rules (assumed) */
-  --navy: #000080;         /* navy: accent on paper */
-  --accent-ink: #000080;   /* text accent on paper: navy (14.56:1 AA) */
+  --green-deep: #1B5E20;   /* deep green: text accent on paper */
+  --accent-ink: #1B5E20;   /* text accent on paper: deep green (7.15:1 AA) */
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -235,8 +235,8 @@
     --paper: oklch(0.965 0 0);
     --paper-2: oklch(0.93 0.006 95);
     --red: oklch(0.628 0.258 29);
-    --action: oklch(0.32 0.15 265);
-    --on-action: oklch(0.965 0 0);
+    --action: oklch(0.83 0.26 135);
+    --on-action: oklch(0.142 0 0);
     --red-deep: oklch(0.628 0.258 29);
     --red-soft: oklch(0.628 0.258 29);
     --red-tint: oklch(0.628 0.258 29 / 0.10);
@@ -245,8 +245,8 @@
     --crimson: oklch(0.628 0.258 29);
     --yellow: oklch(0.91 0.19 100);
     --copper: oklch(0.56 0.14 45);
-    --navy: oklch(0.32 0.15 265);
-    --accent-ink: oklch(0.32 0.15 265);
+    --green-deep: oklch(0.52 0.14 145);
+    --accent-ink: oklch(0.52 0.14 145);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
@@ -301,12 +301,12 @@
 /* ---------- explicit theme toggle (overrides OS preference) ---------- */
 :root[data-theme="light"] {
   color-scheme: light;
-  --action: #000080; --on-action: #F4F4F4;
+  --action: #50E411; --on-action: #0F0F0F;
   --ink: #0F0F0F; --ink-2: #171715; --paper: #F4F4F4; --paper-2: #ecece8;
   --muted: #6d6961; --muted-dark: #aaa59a;
   --line: rgba(15,15,15,0.16); --line-strong: rgba(15,15,15,0.34);
   --line-dark: rgba(244,244,244,0.18); --line-dark-strong: rgba(244,244,244,0.34);
-  --accent-ink: #000080;
+  --accent-ink: #1B5E20;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -319,12 +319,12 @@
 }
 @supports (color: oklch(0.5 0.2 20)) {
   :root[data-theme="light"] {
-    --action: oklch(0.32 0.15 265); --on-action: oklch(0.965 0 0);
+    --action: oklch(0.83 0.26 135); --on-action: oklch(0.142 0 0);
     --ink: oklch(0.142 0 0); --ink-2: oklch(0.19 0.005 95); --paper: oklch(0.965 0 0); --paper-2: oklch(0.93 0.006 95);
     --muted: oklch(0.48 0.008 92); --muted-dark: oklch(0.73 0.008 92);
     --line: oklch(0.142 0 0 / 0.16); --line-strong: oklch(0.142 0 0 / 0.34);
     --line-dark: oklch(0.965 0 0 / 0.18); --line-dark-strong: oklch(0.965 0 0 / 0.34);
-    --accent-ink: oklch(0.32 0.15 265);
+    --accent-ink: oklch(0.52 0.14 145);
   }
   :root[data-theme="dark"] {
     --action: oklch(0.628 0.258 29); --on-action: oklch(0.142 0 0);
@@ -357,7 +357,7 @@
 }
 
 /* Text accent flips with ground: bright red on dark, black on the action band.
-   Navy default (on paper) is set in :root above. */
+   Deep green default (on paper) is set in :root above. */
 .dark,
 .dark-page,
 .dark-hero,
@@ -579,7 +579,7 @@ hr {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
 }
 
 
@@ -631,13 +631,13 @@ hr {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
   flex: none;
 }
 
 /* Numbered slabs carry a catalogue code + asterisk, not a shout */
 .section-index .cat-code {
-  color: var(--red);
+  color: var(--action);
   font-weight: 700;
 }
 
@@ -648,7 +648,7 @@ hr {
   font-family: var(--font-mono);
   font-size: 0.9em;
   line-height: 1;
-  color: var(--red);
+  color: var(--action);
   transform: translateY(-0.1em);
 }
 
@@ -669,7 +669,7 @@ hr {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--red);
+  background: var(--action);
   mix-blend-mode: multiply;
   opacity: 0.11;
   pointer-events: none;
@@ -830,7 +830,7 @@ hr {
   content: "";
   width: 34px;
   height: 1px;
-  background: var(--red);
+  background: var(--action);
 }
 
 .dark .section-index {
@@ -1029,7 +1029,7 @@ hr {
   display: block;
   height: 100%;
   width: 100%;
-  background: var(--red);
+  background: var(--action);
   transform-origin: 0 50%;
   transform: scaleX(0);
 }
@@ -1145,7 +1145,7 @@ hr {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
 }
 
 .nav-cta:hover {
@@ -1307,7 +1307,7 @@ body.nav-open .site-header {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
 }
 
 .hero-media {
@@ -2106,7 +2106,7 @@ body.nav-open .site-header {
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--red);
+  background: var(--action);
   transform: scaleX(1);
   transform-origin: 0 50%;
 }
@@ -2579,7 +2579,7 @@ body.nav-open .site-header {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
 }
 
 .friends-strip {
@@ -3835,7 +3835,7 @@ body.nav-open .site-header {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
 }
 
 .links-list {
@@ -4197,7 +4197,7 @@ body.nav-open .site-header {
     bottom: -2px;
     width: 100%;
     height: 1px;
-    background: var(--red);
+    background: var(--action);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s var(--ease-out);
@@ -4275,7 +4275,7 @@ body.nav-open .site-header {
 .pullquote {
   margin: clamp(24px, 4vw, 48px) 0;
   padding-left: clamp(16px, 2.4vw, 28px);
-  border-left: 2px solid var(--red);
+  border-left: 2px solid var(--action);
   font-family: var(--font-serif);
   font-style: italic;
   font-size: clamp(20px, 2vw, 26px);
@@ -4312,7 +4312,7 @@ body.nav-open .site-header {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--action);
   align-self: center;
 }
 
