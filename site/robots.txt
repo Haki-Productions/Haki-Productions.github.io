@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://haki-productions.github.io/sitemap.xml
