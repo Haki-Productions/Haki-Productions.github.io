@@ -285,6 +285,15 @@
       themeToggle.setAttribute("aria-label", `Colour theme: ${s.label.toLowerCase()}. Click to change.`);
       if (current === "auto") root.removeAttribute("data-theme");
       else root.setAttribute("data-theme", current);
+      // Keep the browser chrome in sync with the resolved theme
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) {
+        let resolved = current;
+        if (current === "auto") {
+          resolved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        themeMeta.setAttribute("content", resolved === "dark" ? "#0d0d0c" : "#f2eee5");
+      }
     };
     render();
 

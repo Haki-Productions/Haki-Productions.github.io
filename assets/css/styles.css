@@ -1,5 +1,5 @@
 /* ============================================================
-   HAKI PRODUCTIONS — design system v3 (red-led)
+   HAKI PRODUCTIONS: design system v3 (red-led)
    Black + paper first. Red #FF0000 is the main action colour.
    H1/Display: Anton · Body: Bahnschrift · Labels: Space Mono
    Accent: Instrument Serif. Color: OKLCH with sRGB fallbacks.
@@ -7,7 +7,6 @@
 
 /* ---------- self-hosted fonts ---------- */
 
-/* Bahnschrift is a Windows system font — no webfont file. Reference by name;
    falls back to Instrument Sans where unavailable. Drop bahnschrift.woff2 in
    assets/fonts and add an @font-face here to embed it everywhere. */
 
@@ -174,19 +173,19 @@
 }
 
 :root {
-  /* Brand palette — RED-led (head decision 2026-11-16).
+  /* Brand palette: RED-led (head decision 2026-11-16).
      Main action colour: original pure red #FF0000, black text on it (4.79:1 AA).
      Purple is no longer the main colour; green kept as small focus/accent signal. */
-  --ink: #0F0F0F;          /* King of Darkness Black — ground */
-  --ink-2: #171715;        /* soft black — image grounds */
-  --paper: #F4F4F4;        /* Text — foreground on dark */
-  --paper-2: #ecece8;      /* Pulp — secondary paper */
-  --red: #FF0000;          /* MAIN: original pure red — buttons, CTAs, bands, focus */
-  --red-deep: #FF0000;     /* deep red — small text accent on paper (5.98:1 AA) */
+  --ink: #0F0F0F;          /* King of Darkness Black: ground */
+  --ink-2: #171715;        /* soft black: image grounds */
+  --paper: #F4F4F4;        /* Text: foreground on dark */
+  --paper-2: #ecece8;      /* Pulp: secondary paper */
+  --red: #FF0000;          /* MAIN: original pure red: buttons, CTAs, bands, focus */
+  --red-deep: #FF0000;     /* deep red: small text accent on paper (5.98:1 AA) */
   --red-soft: #FF0000;     /* soft red */
   --red-tint: rgba(255, 0, 0, 0.10);  /* red focus tint */
-  --green: #50E411;        /* Envenom Green — tertiary focus/accent signal only */
-  --purple: #590E5B;       /* Lord Purple — tertiary accent, demoted from main */
+  --green: #50E411;        /* Envenom Green: tertiary focus/accent signal only */
+  --purple: #590E5B;       /* Lord Purple: tertiary accent, demoted from main */
   --crimson: #FF0000;      /* Regent Crimson -> original pure red */
   --yellow: #F5E411;       /* Button 2 (assumed) */
   --copper: #C25A36;       /* thin divider rules (assumed) */
@@ -361,6 +360,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button, [role="button"], summary, input, select, textarea {
+  touch-action: manipulation;
 }
 
 html {
@@ -428,6 +432,7 @@ body.dark-page::before {
 
 body.nav-open {
   overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 img,
@@ -482,6 +487,7 @@ button {
   background: var(--red);
   color: var(--ink);
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -529,6 +535,7 @@ hr {
 
 /* ---------- theme toggle in register strip ---------- */
 .theme-toggle {
+  position: relative;
   margin-left: auto;
   display: inline-flex;
   align-items: center;
@@ -545,6 +552,16 @@ hr {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+/* Expand the hit area to the 44px WCAG 2.5.8 floor without growing the visual strip */
+.theme-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
 }
 .theme-toggle .theme-glyph { display: inline-block; width: 11px; text-align: center; }
 .theme-toggle:hover { border-color: var(--red); color: var(--ink); background: var(--red-tint); }
@@ -716,7 +733,7 @@ hr {
   align-items: center;
 }
 
-/* registration marks — tiny editorial detail */
+/* registration marks: tiny editorial detail */
 .crop {
   position: absolute;
   width: 14px;
@@ -947,7 +964,7 @@ hr {
   width: 36px;
   height: 36px;
   object-fit: contain;
-  /* pure red mark — no hue-rotate */
+  /* pure red mark: no hue-rotate */
 }
 
 .brand-name {
@@ -1419,6 +1436,7 @@ body.nav-open .site-header {
 }
 
 .stat b {
+  font-variant-numeric: tabular-nums;
   display: block;
   font-family: var(--font-display);
   font-weight: 400;
@@ -2540,7 +2558,7 @@ body.nav-open .site-header {
 }
 
 .offer li::before {
-  content: "—";
+  content: ":";
   color: var(--accent-ink);
   font-family: var(--font-mono);
   font-size: 11px;
