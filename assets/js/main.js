@@ -261,33 +261,41 @@
     });
   }
 
-  /* ---------- scroll reveal ---------- */
-  if (!reduceMotion) {
-    const revealTargets = Array.from(document.querySelectorAll(
-      ".section > .wrap, .section-head, .manifesto, .stats, .work-grid > *, .service-list, .process-grid, .friend-grid, .toolbox-inner, .magazine-inner, .cta-inner, .footer-top"
-    ));
-    revealTargets.forEach((el, i) => {
-      el.classList.add("reveal");
-      el.style.setProperty("--reveal-delay", `${Math.min(i * 0.04, 0.24)}s`);
+  /* ---------- theme toggle (auto / light / dark) ---------- */
+
+  const themeToggle = document.querySelector("[data-theme-toggle]");
+  if (themeToggle) {
+    const STORE_KEY = "haki-theme";
+    const glyph = themeToggle.querySelector(".theme-glyph");
+    const name = themeToggle.querySelector(".theme-name");
+    const states = [
+      { key: "auto", glyph: "A", label: "AUTO", next: "light" },
+      { key: "light", glyph: "\u2600", label: "LIGHT", next: "dark" },
+      { key: "dark", glyph: "\u25D0", label: "DARK", next: "auto" },
+    ];
+    const stored = (() => {
+      try { return window.localStorage.getItem(STORE_KEY); } catch (e) { return null; }
+    })();
+    let current = states.some((s) => s.key === stored) ? stored : "auto";
+
+    const render = () => {
+      const s = states.find((x) => x.key === current);
+      if (glyph) glyph.textContent = s.glyph;
+      if (name) name.textContent = s.label;
+      themeToggle.setAttribute("aria-label", `Colour theme: ${s.label.toLowerCase()}. Click to change.`);
+      if (current === "auto") root.removeAttribute("data-theme");
+      else root.setAttribute("data-theme", current);
+    };
+    render();
+
+    themeToggle.addEventListener("click", () => {
+      const s = states.find((x) => x.key === current);
+      current = s.next;
+      try { window.localStorage.setItem(STORE_KEY, current); } catch (e) {}
+      render();
     });
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
-    revealTargets.forEach((el) => io.observe(el));
   }
 
-  /* ---------- reduced motion: remove marquee duplication jank ---------- */
-
-  if (reduceMotion) {
-    root.classList.add("reduced-motion");
-  }
+  /* ---------- reduced motion flag (CSS handles the rest) ---------- */
+  if (reduceMotion) root.classList.add("reduced-motion");
 })();

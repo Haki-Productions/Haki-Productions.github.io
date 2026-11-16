@@ -200,7 +200,7 @@
 
   --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
-  --font-body: "Bahnschrift", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
 
   --max: 1440px;
@@ -279,6 +279,61 @@
   }
 }
 
+
+/* ---------- explicit theme toggle (overrides OS preference) ---------- */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ink: #0F0F0F; --ink-2: #171715; --paper: #F4F4F4; --paper-2: #ecece8;
+  --muted: #6d6961; --muted-dark: #aaa59a;
+  --line: rgba(15,15,15,0.16); --line-strong: rgba(15,15,15,0.34);
+  --line-dark: rgba(244,244,244,0.18); --line-dark-strong: rgba(244,244,244,0.34);
+  --accent-ink: #C00000;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #F4F4F4; --ink-2: #ecece8; --paper: #0F0F0F; --paper-2: #171715;
+  --muted: #aaa59a; --muted-dark: #6d6961;
+  --line: rgba(244,244,244,0.18); --line-strong: rgba(244,244,244,0.34);
+  --line-dark: rgba(15,15,15,0.16); --line-dark-strong: rgba(15,15,15,0.34);
+  --accent-ink: #FF1A1A;
+}
+@supports (color: oklch(0.5 0.2 20)) {
+  :root[data-theme="light"] {
+    --ink: oklch(0.142 0 0); --ink-2: oklch(0.19 0.005 95); --paper: oklch(0.965 0 0); --paper-2: oklch(0.93 0.006 95);
+    --muted: oklch(0.48 0.008 92); --muted-dark: oklch(0.73 0.008 92);
+    --line: oklch(0.142 0 0 / 0.16); --line-strong: oklch(0.142 0 0 / 0.34);
+    --line-dark: oklch(0.965 0 0 / 0.18); --line-dark-strong: oklch(0.965 0 0 / 0.34);
+    --accent-ink: oklch(0.5 0.22 29);
+  }
+  :root[data-theme="dark"] {
+    --ink: oklch(0.965 0 0); --ink-2: oklch(0.93 0.006 95); --paper: oklch(0.142 0 0); --paper-2: oklch(0.19 0.005 95);
+    --muted: oklch(0.73 0.008 92); --muted-dark: oklch(0.48 0.008 92);
+    --line: oklch(0.965 0 0 / 0.18); --line-strong: oklch(0.965 0 0 / 0.34);
+    --line-dark: oklch(0.142 0 0 / 0.16); --line-dark-strong: oklch(0.142 0 0 / 0.34);
+    --accent-ink: oklch(0.72 0.19 29);
+  }
+  :root[data-theme="dark"] .dark,
+  :root[data-theme="dark"] .dark-page,
+  :root[data-theme="dark"] .dark-hero,
+  :root[data-theme="dark"] .magazine-band,
+  :root[data-theme="dark"] .cta,
+  :root[data-theme="dark"] .site-footer,
+  :root[data-theme="dark"] .mag-hero,
+  :root[data-theme="dark"] .ticker {
+    --accent-ink: oklch(0.5 0.22 29);
+  }
+}
+:root[data-theme="dark"] .dark,
+:root[data-theme="dark"] .dark-page,
+:root[data-theme="dark"] .dark-hero,
+:root[data-theme="dark"] .magazine-band,
+:root[data-theme="dark"] .cta,
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .mag-hero,
+:root[data-theme="dark"] .ticker {
+  --accent-ink: #C00000;
+}
+
 /* Text accent flips with ground: bright red on dark, black on the red band.
    Deep red default (on paper) is set in :root above. */
 .dark,
@@ -294,6 +349,11 @@
 .toolbox-band {
   --accent-ink: #0F0F0F; /* black on the red band */
 }
+
+
+/* ---------- browser surfaces ---------- */
+::selection { background: var(--red); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
 /* ---------- reset ---------- */
 
@@ -452,8 +512,8 @@ hr {
   background: var(--paper);
   border-bottom: 1px solid var(--line);
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -465,6 +525,29 @@ hr {
   border-radius: 50%;
   background: var(--red);
 }
+
+
+/* ---------- theme toggle in register strip ---------- */
+.theme-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  padding: 0 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.theme-toggle .theme-glyph { display: inline-block; width: 11px; text-align: center; }
+.theme-toggle:hover { border-color: var(--red); color: var(--ink); background: var(--red-tint); }
 
 /* ---------- typography ---------- */
 
@@ -1917,6 +2000,7 @@ body.nav-open .site-header {
 }
 
 .toolbox-band p {
+  color: var(--ink);
   max-width: 40ch;
   margin: 0 0 24px;
   font-size: clamp(17px, 1.4vw, 20px);
@@ -4015,17 +4099,21 @@ body.nav-open .site-header {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  /* Reduce spatial movement, keep state/opacity/colour feedback legible */
+  .js .hero-title .line,
+  .js .hero-lede,
+  .js .hero-meta,
+  .js .hero-shot,
+  .js .page-hero-side {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
-  .ticker-track {
-    animation: none;
+  .ticker-track { animation: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  *, *::before, *::after {
+    transition-duration: 0.12s !important;
+    scroll-behavior: auto !important;
   }
 }
 

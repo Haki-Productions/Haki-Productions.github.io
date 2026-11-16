@@ -3,28 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Tiger Dashboard — Haki Productions</title>
-  <meta name="description" content="Working CRM for Haki Productions: lead pipeline, weekly scorecard, prevention log and objection responses.">
-  <link rel="canonical" href="https://haki-productions.github.io/dashboard.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Haki Productions">
-  <meta property="og:title" content="The Tiger Dashboard — Haki Productions">
-  <meta property="og:description" content="The pipeline, the numbers, the hunt.">
-  <meta property="og:image" content="https://haki-productions.github.io/assets/img/og-haki.jpg">
-  <meta name="twitter:card" content="summary_large_image">
+  <title>Operations — Haki Productions</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nositelinkssearchbox">
   <meta name="theme-color" content="#0d0d0c">
   <link rel="icon" href="assets/img/haki-mark-red.png?v=3" type="image/png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
-  <script>document.documentElement.classList.add("js");</script>
-  <script data-goatcounter="https://hakiproductions.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("haki-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
+  <!-- Internal access gate. Deterrent only — static site, no server-side auth.
+       Set the code in dashboard.js (GATE_CODE). Data itself is browser-local. -->
+  <div class="gate" id="gate" hidden>
+    <form class="gate-card" id="gateForm">
+      <p class="gate-rail">Haki Productions / Internal</p>
+      <h1 class="gate-title">Crew <em>only</em>.</h1>
+      <p class="gate-note">This is an internal operations tool. Enter the access code to continue.</p>
+      <div class="gate-field">
+        <label for="gateCode" class="sr-only">Access code</label>
+        <input id="gateCode" name="gateCode" type="password" autocomplete="off" inputmode="text" placeholder="Access code" required>
+        <button class="btn btn-red" type="submit">Enter</button>
+      </div>
+      <p class="gate-error" id="gateError" role="alert" hidden>Wrong code. Try again.</p>
+    </form>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
 
   <header class="site-header" id="top">
-    <div class="register" aria-label="Studio register"><span>ROTTERDAM</span><span>EST 2021</span><span>OPEN FOR PROJECTS</span></div>
+    <div class="register" aria-label="Studio register"><span>ROTTERDAM</span><span>EST 2021</span><span>OPEN FOR PROJECTS</span><button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: automatic. Click to change"><span class="theme-glyph" aria-hidden="true">A</span><span class="theme-name">AUTO</span></button></div>
     <a class="brand" href="index.html" aria-label="Haki Productions home">
       <img class="brand-mark" src="assets/img/haki-mark-red.png?v=3" alt="">
       <span class="brand-name">HAKI<br>PRODUCTIONS</span>
@@ -35,7 +43,6 @@
       <a href="magazine.html">Magazine</a>
       <a href="about.html">About</a>
       <a href="toolbox.html">Toolbox</a>
-      <a href="dashboard.html">Dashboard</a>
       <a href="https://cal.com/hakiproductions/intro" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">
@@ -53,12 +60,15 @@
           <span>Where conquerors are made</span>
         </p>
         <h1 id="dashTitle">The <em>hunt</em>, tracked.</h1>
-        <p>Every lead from first touch to deposit. The four-axis sniff test, the weekly numbers, and the exact words for each objection. Data stays in this browser until you export it.</p>
+        <p>Every lead from first touch to deposit. The four-axis sniff test, the weekly numbers, and the exact words for each objection. Data stays in this browser. Use Full backup to save everything, not just leads.</p>
         <div class="dash-actions">
           <button type="button" class="btn btn-red btn-sm" id="addLead">Add a lead</button>
           <button type="button" class="btn btn-ghost btn-sm" id="exportCsv">Export CSV</button>
           <label class="btn btn-ghost btn-sm" for="importCsv">Import CSV</label>
           <input type="file" id="importCsv" accept=".csv,text/csv" class="sr-only">
+          <button type="button" class="btn btn-ghost btn-sm" id="exportJson">Full backup</button>
+          <label class="btn btn-ghost btn-sm" for="importJson">Restore</label>
+          <input type="file" id="importJson" accept=".json,application/json" class="sr-only">
           <button type="button" class="btn btn-ghost btn-sm" id="resetData">Reset</button>
         </div>
         <p class="dash-status" id="dashStatus" role="status" aria-live="polite"></p>
@@ -373,7 +383,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20261116f"></script>
   <script src="assets/js/dashboard.js"></script>
 </body>
 </html>

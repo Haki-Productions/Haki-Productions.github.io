@@ -9,6 +9,12 @@
   "use strict";
 
   const KEY = "tiger.crm.v1";
+  /* Internal access gate — DETERRENT ONLY. This is a static site with no
+     server-side auth; anyone can read the source. It keeps casual visitors
+     and crawlers out of the UI, nothing more. Data lives in this browser. */
+  const GATE_CODE = "haki-crew";
+  const GATE_KEY = "tiger.gate.v1";
+
 
   const STAGES = [
     "New",
@@ -405,6 +411,56 @@
     save(editingId ? "Lead updated." : "Lead added to the pipeline.");
   }
 
+  /* ---------- full backup (everything, not just leads) ---------- */
+
+  function exportJSON() {
+    const payload = {
+      _app: "tiger.crm",
+      _version: 1,
+      _exportedAt: new Date().toISOString(),
+      leads: state.leads,
+      prevention: state.prevention,
+      view: state.view,
+      scorecard: state.scorecard,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `tiger-backup-${todayISO()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    setStatus(`Full backup saved: ${state.leads.length} lead(s), ${state.prevention.length} prevention note(s).`, "ok");
+  }
+
+  function importJSON(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      let parsed;
+      try {
+        parsed = JSON.parse(String(reader.result));
+      } catch (error) {
+        setStatus("That file is not valid JSON.", "error");
+        return;
+      }
+      if (!parsed || parsed._app !== "tiger.crm" || !Array.isArray(parsed.leads)) {
+        setStatus("Not a Tiger backup file. Nothing changed.", "error");
+        return;
+      }
+      const count = parsed.leads.length;
+      const prev = parsed.prevention.length || 0;
+      if (!window.confirm(`Restore ${count} lead(s) and ${prev} prevention note(s)? This replaces everything on this device.`)) return;
+      state.leads = parsed.leads;
+      state.prevention = Array.isArray(parsed.prevention) ? parsed.prevention : [];
+      state.view = parsed.view === "table" ? "table" : "board";
+      state.scorecard = Object.assign(empty().scorecard, parsed.scorecard || {});
+      save(`Restored ${count} lead(s) and ${prev} prevention note(s).`);
+    };
+    reader.onerror = () => setStatus("Could not read that file.", "error");
+    reader.readAsText(file);
+  }
+
   /* ---------- CSV ---------- */
 
   function csvCell(value) {
@@ -488,6 +544,7 @@
         updatedAt: todayISO(),
       }));
 
+      if (!window.confirm(`Import ${incoming.length} lead(s)? This replaces the ${state.leads.length} lead(s) currently on this device.`)) return;
       state.leads = incoming;
       save(`Imported ${incoming.length} lead(s). Existing leads replaced.`);
     };
@@ -631,6 +688,12 @@
     });
 
     $("#exportCsv").addEventListener("click", exportCSV);
+    $("#exportJson").addEventListener("click", exportJSON);
+    $("#importJson").addEventListener("change", (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (file) importJSON(file);
+      event.target.value = "";
+    });
     $("#importCsv").addEventListener("change", (event) => {
       const file = event.target.files && event.target.files[0];
       if (file) importCSV(file);
@@ -647,7 +710,47 @@
 
   /* ---------- init ---------- */
 
+
+  /* ---------- access gate ---------- */
+
+  function initGate() {
+    const gate = document.getElementById("gate");
+    const form = document.getElementById("gateForm");
+    const code = document.getElementById("gateCode");
+    const err = document.getElementById("gateError");
+    if (!gate || !form) return;
+
+    let unlocked = false;
+    try { unlocked = window.sessionStorage.getItem(GATE_KEY) === "1"; } catch (e) { /* no storage */ }
+
+    function unlock() {
+      gate.hidden = true;
+      document.body.style.removeProperty("overflow");
+      try { window.sessionStorage.setItem(GATE_KEY, "1"); } catch (e) { /* no storage */ }
+    }
+
+    function lock() {
+      gate.hidden = false;
+      document.body.style.overflow = "hidden";
+      if (code) { code.value = ""; code.focus(); }
+    }
+
+    if (unlocked) unlock(); else lock();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (code && code.value.trim() === GATE_CODE) {
+        if (err) err.hidden = true;
+        unlock();
+      } else {
+        if (err) err.hidden = false;
+        if (code) { code.select(); code.focus(); }
+      }
+    });
+  }
+
   function init() {
+    initGate();
     load();
     bind();
     document.getElementById("p_date").value = todayISO();

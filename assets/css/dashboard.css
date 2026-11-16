@@ -841,3 +841,94 @@ table.data tbody tr:hover { background: var(--paper-2); }
 .kpi-value,
 .funnel-count,
 .ladder-rate { font-variant-numeric: tabular-nums; }
+
+/* ---------- internal access gate (deterrent, not security) ---------- */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.gate[hidden] { display: none; }
+
+.gate-card {
+  width: 100%;
+  max-width: 440px;
+  padding: clamp(28px, 5vw, 48px);
+  border: 1px solid var(--line-dark, rgba(244,244,244,0.18));
+}
+
+.gate-rail {
+  margin: 0 0 clamp(24px, 4vw, 36px);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-dark, #aaa59a);
+}
+
+.gate-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 8vw, 68px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.gate-title em {
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.gate-note {
+  margin: 0 0 28px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--muted-dark, #aaa59a);
+}
+
+.gate-field {
+  display: flex;
+  gap: 10px;
+}
+
+.gate-field input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line-dark-strong, rgba(244,244,244,0.34));
+  border-radius: 0;
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.gate-field input:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+.gate-field .btn { flex: none; }
+
+.gate-error {
+  margin: 16px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--red);
+}
+
+@media (max-width: 480px) {
+  .gate-field { flex-direction: column; }
+  .gate-field .btn { width: 100%; }
+}
