@@ -88,6 +88,8 @@ Then ask M0rph and The Eye for confirmation on:
 
 Do not post anything until you have read the briefing, confirmed with M0rph and The Eye, and The Eye has approved your first batch of content.
 
+**YouTube:** @SOULTERRORTV — channel branding confirmed, cross-posting strategy with Instagram locked, Shorts Reformat as primary video format.
+
 ## Method
 
 1. **Research first.** Use websearch and webfetch to find what is working in the creative agency, streetwear, music and Rotterdam spaces. Check competitor accounts, trending formats, hashtag performance.

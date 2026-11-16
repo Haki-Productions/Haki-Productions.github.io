@@ -26,6 +26,9 @@ marketing/
   04-lead-magnet.md     (Audience agent)  toolbox / press kit checklist
   05-weekly-scorecard.md (Audience agent)  Friday numbers
   06-experiments.md     (Audience agent)  one hypothesis at a time
+  07-pipeline-tracker.md   (The Tiger)  pipeline stages, qualification, ledger
+  08-objection-handling.md (The Tiger)   four objection responses
+  09-weekly-tiger-scorecard.md (The Tiger) input metrics, The Tiger's math
 vox/                    ← VOX social execution (see vox/README.md)
   channels/             instagram (active) + channel-expansion (designed, not active)
   calendar/             dated social calendars

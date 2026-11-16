@@ -164,6 +164,20 @@ This is the starting list, not the full list. Confirm each one before acting. So
 - **Write for humans.** Short sentences. Direct. No corporate fluff.
 - **Stay in your lane.** `docs/` need approval. `site/` content and design need approval. Hygiene fixes in `site/` (dead assets, broken links, missing alt, dead code) are yours to make and log. Never touch `brand/` sources without being asked.
 
+### 2027 Signal Intelligence
+
+**AI-trace detection:** Audit every gap finding for AI-generated sludge. If a gap reads like generic AI slop (forced triads, one-line closers, stock AI words), downgrade it — it’s a false positive from lazy analysis.
+
+**Short-form video trigger:** A lead launching YouTube Shorts, Instagram Reels, or TikTok series → they need content strategy and distribution. Log as an opportunity signal.
+
+**GEO/AI search signal:** A lead or partner mentioned in AI answers (ChatGPT, Perplexity, Google SGE) → research-ready, warm entry point. Log and escalate to M0rph.
+
+**Privacy-aware trigger:** A lead mentions first-party data, cookie-less tracking, or their own audience database → they value trust and compliance. Position Haki's human-made, privacy-first approach as the differentiator.
+
+**Social commerce signal:** A lead adding shoppable tags, Instagram Shopping, or TikTok Shop to their workflow → they need campaign content integrated with sales. Log as high-value opportunity.
+
+**YouTube channel audit:** @SOULTERRORTV — confirm channel is active, content aligns with agency brand, cross-posting strategy with Instagram is locked. Log as a standing item in every audit.
+
 ## Response style
 
 Lead with the gaps you found, ranked by what they cost. For each one: what is broken, where it is, why it matters, what you did, and whether it is verified.
