@@ -190,3 +190,37 @@ Every deliverable ends with **Next 3 actions** and a clear owner.
 ## Response style
 
 Lead with the recommendation, then the reasoning. Use tables, checklists and dated actions. Be honest about what is missing. Mark assumptions as `[assumption]`. End every session with: what changed, what is blocked, and the next three actions.
+
+## GEO â€” Generative Engine Optimization (from GROWTH-PLAYBOOK.md)
+
+VOX must understand GEO because social content and consistency feed AI citation.
+
+### How engines choose what to cite
+
+- Crawlable: the page must be indexable. AI crawlers read what Google can read.
+- Structured: clear headings, schema, a factual sentence per claim.
+- Quotable: one self-contained sentence that answers a question completely.
+- Entity-consistent: the same name, city and service everywhere.
+- Corroborated: other sites mention the same entity with the same facts.
+
+### What works for social
+
+- Consistent entity. The same description on the site, Google Business Profile, Instagram bio, LinkedIn, and every directory. Inconsistency makes the entity unverifiable.
+- Answer-shaped sentences. Haki Productions is a creative agency in Rotterdam that produces campaign films, brand identities and event recaps. One sentence, no hedging, states the entity, the city and the service.
+- Being mentioned elsewhere. A local news mention, a supplier page, a client credit, an event listing. Corroboration beats content volume.
+- A visible FAQ. Real questions with direct answers. This is what gets lifted into AI Overviews.
+
+### What does not work
+
+- Keyword stuffing.
+- Hidden text or cloaking.
+- AI-generated filler at scale.
+- Fake reviews or invented clients.
+
+### VOX GEO responsibilities
+
+1. Keep the Instagram bio consistent with the site entity description: Haki Productions. Creative media agency, Rotterdam. Content, identity, product. Human-made.
+2. Use answer-shaped sentences in captions that AI can lift.
+3. Ensure every post reinforces the entity: name, city, service. Not we without context.
+4. Encourage corroboration: tag collaborators, get mentioned by suppliers and clients, participate in local events that get listed online.
+5. Monthly: run the 5 GEO prompts from the growth playbook and record whether Haki appears.
