@@ -11,14 +11,14 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | ID | Pri | Class | Gap | Where | Cost of leaving it | Status |
 |---|---|---|---|---|---|---|
 | JUG-014 | P0 | Unopened | `hakiproductions.com` has no DNS record. Every canonical, `og:image` and mailto points at a domain that does not exist. | all pages | Email bounces. Canonicals point nowhere. Nothing can be indexed. | OPEN |
-| JUG-002 | P0 | Unopened | Site is not deployed. No host, no `robots.txt`, no sitemap, no 404. | `site/` | A site nobody can reach sells nothing | OPEN |
+| JUG-002 | — | Unopened | Site is not deployed. | `site/` | — | CLOSED 16 Nov |
 | JUG-004 | P0 | Leaking | Inquiry form is `mailto:` only, to an address on a dead domain. | `contact.html:69` | There is currently **no working contact path at all** | OPEN |
-| JUG-010 | P1 | Broken | Footer Instagram points at `@soulterror00`, the streetwear label, on 7 of 8 pages. | see evidence | Every visitor who wants the agency lands on a hoodie brand | OPEN |
+| JUG-010 | — | Broken | Footer Instagram pointed at `@soulterror00`. | see evidence | — | CLOSED 16 Nov |
 | JUG-001 | — | Unopened | No git repository. | project root | — | CLOSED 16 Nov |
 | JUG-003 | P1 | Unopened | No analytics. | all pages | Cannot tell a traffic problem from an offer problem | OPEN |
-| JUG-006 | P1 | Stale | "Booking Q1 2027" signals full capacity while the goal is a first client. | `index.html:73`, `links.html:29` | Turns away the exact buyer being chased | OPEN |
+| JUG-006 | — | Stale | "Booking Q1 2027" availability line. | `index.html:73`, `links.html:29` | — | CLOSED 16 Nov |
 | JUG-011 | P1 | Leaking | Toolbox templates are mailto requests. | `toolbox.html` | Work is created, no email is captured | OPEN |
-| JUG-005 | P2 | Leaking | No booking link on the site. | `contact.html` | Warm leads must ask for a link and wait | OPEN |
+| JUG-005 | — | Leaking | No booking link on the site. | `contact.html` | — | CLOSED 16 Nov |
 | JUG-015 | P2 | Unopened | No `robots.txt`, `sitemap.xml`, 404 page or `llms.txt`. | `site/` | Search engines have no map, no crawl instruction | OPEN |
 | JUG-016 | P2 | Unverified | Schema markup only on `index.html`. Seven pages have none. | `site/*.html` | Weaker entity signals for search and AI answers | OPEN |
 | JUG-017 | P3 | Stale | Titles run 25–49 characters against a 50–60 target. `index.html` description is 188 characters and truncates. | all pages | Lower click-through in results | OPEN |
@@ -28,7 +28,7 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-007 | — | Stale | Audience agent quoted v1 prices. | `.opencode/agents/audience.md` | — | CLOSED 16 Nov |
 | JUG-008 | — | Unverified | Claimed the pitch deck carried stale v2 prices. | `brand/deck/*.pdf` | — | FALSE 16 Nov |
 
-**Totals:** 3 P0 · 4 P1 · 3 P2 · 2 P3 · 2 blocked · 2 closed · 1 false
+**Totals:** 1 P0 · 4 P1 · 2 P2 · 2 P3 · 2 blocked · 7 closed · 1 false
 
 ---
 
