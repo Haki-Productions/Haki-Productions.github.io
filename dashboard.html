@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Tiger Dashboard — Haki Productions</title>
+  <meta name="description" content="Working CRM for Haki Productions: lead pipeline, weekly scorecard, prevention log and objection responses.">
+  <link rel="canonical" href="https://haki-productions.github.io/dashboard.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haki Productions">
+  <meta property="og:title" content="The Tiger Dashboard — Haki Productions">
+  <meta property="og:description" content="The pipeline, the numbers, the hunt.">
+  <meta property="og:image" content="https://haki-productions.github.io/assets/img/og-haki.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0d0d0c">
+  <link rel="icon" href="assets/img/haki-mark-red.png?v=3" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script data-goatcounter="https://hakiproductions.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <header class="site-header" id="top">
+    <div class="register" aria-label="Studio register"><span>ROTTERDAM</span><span>EST 2021</span><span>OPEN FOR PROJECTS</span></div>
+    <a class="brand" href="index.html" aria-label="Haki Productions home">
+      <img class="brand-mark" src="assets/img/haki-mark-red.png?v=3" alt="">
+      <span class="brand-name">HAKI<br>PRODUCTIONS</span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="services.html">Services</a>
+      <a href="magazine.html">Magazine</a>
+      <a href="about.html">About</a>
+      <a href="toolbox.html">Toolbox</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="https://cal.com/hakiproductions/intro" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main" class="dash">
+    <div class="wrap">
+      <section class="dash-hero" aria-labelledby="dashTitle">
+        <p class="dash-rail">
+          <span>The Tiger</span>
+          <span>Sales &amp; CRM</span>
+          <span>Rotterdam</span>
+          <span>Where conquerors are made</span>
+        </p>
+        <h1 id="dashTitle">The <em>hunt</em>, tracked.</h1>
+        <p>Every lead from first touch to deposit. The four-axis sniff test, the weekly numbers, and the exact words for each objection. Data stays in this browser until you export it.</p>
+        <div class="dash-actions">
+          <button type="button" class="btn btn-red btn-sm" id="addLead">Add a lead</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="exportCsv">Export CSV</button>
+          <label class="btn btn-ghost btn-sm" for="importCsv">Import CSV</label>
+          <input type="file" id="importCsv" accept=".csv,text/csv" class="sr-only">
+          <button type="button" class="btn btn-ghost btn-sm" id="resetData">Reset</button>
+        </div>
+        <p class="dash-status" id="dashStatus" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- KPI strip -->
+      <section class="kpis" aria-label="Pipeline at a glance">
+        <div class="kpi">
+          <span class="kpi-label">Active leads</span>
+          <span class="kpi-value" id="kpiActive">0</span>
+          <span class="kpi-note">Not closed won or lost.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Past first touch</span>
+          <span class="kpi-value" id="kpiQualified">0</span>
+          <span class="kpi-note">Contacted, called, or proposed.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">In the ask</span>
+          <span class="kpi-value" id="kpiProposals">0</span>
+          <span class="kpi-note">Proposal sent or negotiating.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Overdue actions</span>
+          <span class="kpi-value" id="kpiOverdue">0</span>
+          <span class="kpi-note" id="kpiOverdueNote">Every active lead has a next action in date.</span>
+        </div>
+      </section>
+
+      <!-- Funnel + conversion ladder -->
+      <div class="dash-grid two">
+        <section class="panel" aria-labelledby="funnelTitle">
+          <div class="panel-head">
+            <h2 id="funnelTitle">Pipeline stages</h2>
+            <span class="hint">No lead waits more than 48h</span>
+          </div>
+          <div class="panel-body">
+            <ol class="funnel" id="funnel"></ol>
+            <p class="funnel-note">Qualification is the four-axis sniff test: budget, timeline, authority, need. Fails two or more, drop it.</p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="mathTitle">
+          <div class="panel-head">
+            <h2 id="mathTitle">The Tiger's math</h2>
+            <span class="hint">Weekly inputs</span>
+          </div>
+          <div class="panel-body">
+            <ul class="ladder" id="ladder"></ul>
+            <div class="math-strip">
+              <strong>20 warm conversations → 5 proposals → 2 closes</strong>
+              <p>Month one: one paid project plus one retainer. Conversation first, quote second.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Leads -->
+      <section class="panel" aria-labelledby="leadsTitle" style="margin-top:var(--gap)">
+        <div class="panel-head">
+          <h2 id="leadsTitle">Lead ledger</h2>
+          <span class="hint">Source · stage · four axes · next action</span>
+        </div>
+
+        <div class="editor" id="editor">
+          <h3 class="editor-title" id="editorTitle">New lead</h3>
+          <form id="leadForm">
+            <div class="editor-grid">
+              <div class="field full">
+                <label for="f_name">Lead / project name</label>
+                <input id="f_name" name="name" type="text" autocomplete="off" placeholder="Who or what is this?" required>
+              </div>
+              <div class="field">
+                <label for="f_source">Source</label>
+                <select id="f_source" name="source">
+                  <option>Instagram DM</option>
+                  <option>LinkedIn inbound</option>
+                  <option>Referral</option>
+                  <option>Cold email</option>
+                  <option>Toolbox request</option>
+                  <option>Press kit request</option>
+                  <option>Event inquiry</option>
+                  <option>Website form</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f_stage">Stage</label>
+                <select id="f_stage" name="stage">
+                  <option>New</option>
+                  <option>Qualified</option>
+                  <option>Contacted</option>
+                  <option>Call booked</option>
+                  <option>Proposal sent</option>
+                  <option>Negotiating</option>
+                  <option>Closed (won)</option>
+                  <option>Closed (lost)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f_budget">Budget (axis)</label>
+                <input id="f_budget" name="budget" type="text" placeholder="€750+?">
+              </div>
+              <div class="field">
+                <label for="f_deadline">Timeline (axis)</label>
+                <input id="f_deadline" name="deadline" type="text" placeholder="Real deadline or event">
+              </div>
+              <div class="field">
+                <label for="f_authority">Authority (axis)</label>
+                <input id="f_authority" name="authority" type="text" placeholder="Decision-maker?">
+              </div>
+              <div class="field">
+                <label for="f_need">Need (axis)</label>
+                <input id="f_need" name="need" type="text" placeholder="Which offer fits?">
+              </div>
+              <div class="field">
+                <label for="f_prevention">Prevented</label>
+                <input id="f_prevention" name="prevention" type="text" placeholder="What failure was caught?">
+              </div>
+              <div class="field">
+                <label for="f_nextAction">Next action</label>
+                <input id="f_nextAction" name="nextAction" type="text" placeholder="One concrete step">
+              </div>
+              <div class="field">
+                <label for="f_nextDate">Next action date</label>
+                <input id="f_nextDate" name="nextDate" type="date">
+              </div>
+            </div>
+            <div class="editor-actions">
+              <button type="submit" class="btn btn-red btn-sm" id="leadSubmit">Add lead</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="cancelEdit">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col">Lead</th>
+                <th scope="col">Stage</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Timeline</th>
+                <th scope="col">Next action</th>
+                <th scope="col">Date</th>
+                <th scope="col" aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody id="leadsBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty" id="leadsEmpty" hidden>
+          <h3>No leads in the pipeline</h3>
+          <p>Add the first lead. Capture the source, the four axes, and one next action with a date.</p>
+          <button type="button" class="btn btn-red btn-sm" id="emptyAdd">Add a lead</button>
+        </div>
+      </section>
+
+      <!-- Scorecard + prevention + objections -->
+      <div class="dash-grid two">
+        <section class="panel" aria-labelledby="scoreTitle">
+          <div class="panel-head">
+            <h2 id="scoreTitle">Weekly scorecard</h2>
+            <span class="hint">Inputs, not vanity metrics</span>
+          </div>
+          <div class="panel-body">
+            <form id="scoreForm" class="form-row">
+              <div class="field full">
+                <label for="s_week">Week</label>
+                <input id="s_week" data-score="week" type="text" placeholder="e.g. 2026-W47">
+              </div>
+              <div class="field">
+                <label for="s_conv">Conversations</label>
+                <input id="s_conv" data-score="conversations" type="number" min="0" step="1">
+              </div>
+              <div class="field">
+                <label for="s_rep">Replies</label>
+                <input id="s_rep" data-score="replies" type="number" min="0" step="1">
+              </div>
+              <div class="field">
+                <label for="s_call">Calls booked</label>
+                <input id="s_call" data-score="calls" type="number" min="0" step="1">
+              </div>
+              <div class="field">
+                <label for="s_prop">Proposals sent</label>
+                <input id="s_prop" data-score="proposals" type="number" min="0" step="1">
+              </div>
+              <div class="field">
+                <label for="s_dep">Deposits paid</label>
+                <input id="s_dep" data-score="deposits" type="number" min="0" step="0.5">
+              </div>
+              <div class="field full">
+                <button type="submit" class="btn btn-red btn-sm">Save week</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="preventionTitle">
+          <div class="panel-head">
+            <h2 id="preventionTitle">Prevention log</h2>
+            <span class="hint">Track prevented, not just fixed</span>
+          </div>
+          <div class="panel-body">
+            <form id="preventionForm" class="form-row">
+              <div class="field full">
+                <label for="p_what">What was prevented?</label>
+                <input id="p_what" type="text" placeholder="Under-budget lead deflected before scoping">
+              </div>
+              <div class="field">
+                <label for="p_date">Date</label>
+                <input id="p_date" type="date">
+              </div>
+              <div class="field">
+                <label for="p_axis">Axis that caught it</label>
+                <select id="p_axis">
+                  <option>Budget</option>
+                  <option>Timeline</option>
+                  <option>Authority</option>
+                  <option>Need</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="p_avoided">Failure class avoided</label>
+                <input id="p_avoided" type="text" placeholder="Wasted scoping effort">
+              </div>
+              <div class="field full">
+                <button type="submit" class="btn btn-ghost btn-sm">Log prevention</button>
+              </div>
+            </form>
+            <ul class="mini-list" id="preventionList" style="margin-top:22px"></ul>
+            <div class="empty" id="preventionEmpty" hidden style="padding:28px 0">
+              <p style="margin:0">Nothing logged yet. Prevention compounds — start with one.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel" aria-labelledby="objectionsTitle" style="margin-top:var(--gap)">
+        <div class="panel-head">
+          <h2 id="objectionsTitle">Objection responses</h2>
+          <span class="hint">Never lead with pricing</span>
+        </div>
+        <div class="panel-body">
+          <details class="objection">
+            <summary>"Too expensive."</summary>
+            <div class="objection-body">
+              <p class="say">"What is the one thing you need most?" Then offer the smallest project that solves it.</p>
+              <p class="never">Never discount without scope reduction. Reduce scope, not quality.</p>
+            </div>
+          </details>
+          <details class="objection">
+            <summary>"I need to think about it."</summary>
+            <div class="objection-body">
+              <p class="say">"What is the specific thing you are unsure about?" Isolate the real objection and answer it.</p>
+              <p class="never">Never say "no problem, just let me know."</p>
+            </div>
+          </details>
+          <details class="objection">
+            <summary>"Can you do it cheaper?"</summary>
+            <div class="objection-body">
+              <p class="say">"I can reduce scope, not quality. Here is what we cut." Name the exact trade.</p>
+              <p class="never">Never say "maybe" or "we'll see."</p>
+            </div>
+          </details>
+          <details class="objection">
+            <summary>"I found someone cheaper."</summary>
+            <div class="objection-body">
+              <p class="say">"Good. Compare what they deliver for that price. If they do the same thing for less, take it. If they do less, you are not comparing the same thing."</p>
+              <p class="never">Never get defensive or start a price war.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img class="brand-mark" src="assets/img/haki-mark-red.png?v=3" alt="">
+          <p>Where conquerors are made. Creative media agency, Rotterdam. Available worldwide.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Studio</h3>
+          <a href="about.html">About</a>
+          <a href="magazine.html">Magazine</a>
+          <a href="toolbox.html">Toolbox</a>
+          <a href="links.html">Links</a>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <a href="https://cal.com/hakiproductions/intro" target="_blank" rel="noopener">Book a call</a>
+          <a href="https://www.instagram.com/producedbyhaki/" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:producedbyhaki@gmail.com">producedbyhaki@gmail.com</a>
+          <span>Rotterdam, NL</span>
+        </div>
+      </div>
+      <div class="footer-wordmark"><span>HAKI PRODUCTIONS</span></div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Haki Productions. All rights reserved.</span>
+        <span>Built in-house. Human-made.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
