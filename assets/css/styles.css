@@ -1,19 +1,12 @@
 /* ============================================================
    HAKI PRODUCTIONS — design system v3 (red-led)
    Black + paper first. Red #FF0000 is the main action colour.
-   H1/Display: Mirage Gothic · Body: Bahnschrift · Labels: Space Mono
+   H1/Display: Anton · Body: Bahnschrift · Labels: Space Mono
    Accent: Instrument Serif. Color: OKLCH with sRGB fallbacks.
    ============================================================ */
 
 /* ---------- self-hosted fonts ---------- */
 
-@font-face {
-  font-family: "Mirage Gothic";
-  src: url("../fonts/mirage-gothic-400.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
 /* Bahnschrift is a Windows system font — no webfont file. Reference by name;
    falls back to Instrument Sans where unavailable. Drop bahnschrift.woff2 in
    assets/fonts and add an @font-face here to embed it everywhere. */
@@ -189,15 +182,15 @@
   --paper: #F4F4F4;        /* Text — foreground on dark */
   --paper-2: #ecece8;      /* Pulp — secondary paper */
   --red: #FF0000;          /* MAIN: original pure red — buttons, CTAs, bands, focus */
-  --red-deep: #C00000;     /* deep red — small text accent on paper (5.98:1 AA) */
-  --red-soft: #FF3333;     /* soft red */
+  --red-deep: #FF0000;     /* deep red — small text accent on paper (5.98:1 AA) */
+  --red-soft: #FF0000;     /* soft red */
   --red-tint: rgba(255, 0, 0, 0.10);  /* red focus tint */
   --green: #50E411;        /* Envenom Green — tertiary focus/accent signal only */
   --purple: #590E5B;       /* Lord Purple — tertiary accent, demoted from main */
   --crimson: #FF0000;      /* Regent Crimson -> original pure red */
   --yellow: #F5E411;       /* Button 2 (assumed) */
   --copper: #C25A36;       /* thin divider rules (assumed) */
-  --accent-ink: #C00000;   /* text accent on paper: deep red */
+  --accent-ink: #FF0000;   /* text accent on paper: deep red */
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -205,7 +198,7 @@
   --line-dark: rgba(246, 246, 243, 0.18);
   --line-dark-strong: rgba(246, 246, 243, 0.34);
 
-  --font-display: "Mirage Gothic", "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-body: "Bahnschrift", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
@@ -231,15 +224,15 @@
     --paper: oklch(0.965 0 0);
     --paper-2: oklch(0.93 0.006 95);
     --red: oklch(0.628 0.258 29);
-    --red-deep: oklch(0.5 0.22 29);
-    --red-soft: oklch(0.72 0.19 29);
+    --red-deep: oklch(0.628 0.258 29);
+    --red-soft: oklch(0.628 0.258 29);
     --red-tint: oklch(0.628 0.258 29 / 0.10);
     --green: oklch(0.83 0.26 135);
     --purple: oklch(0.42 0.16 320);
     --crimson: oklch(0.628 0.258 29);
     --yellow: oklch(0.91 0.19 100);
     --copper: oklch(0.56 0.14 45);
-    --accent-ink: oklch(0.5 0.22 29);
+    --accent-ink: oklch(0.628 0.258 29);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
@@ -256,10 +249,10 @@
       --line-strong: oklch(0.965 0 0 / 0.34);
       --line-dark: oklch(0.142 0 0 / 0.16);
       --line-dark-strong: oklch(0.142 0 0 / 0.34);
-      --accent-ink: oklch(0.72 0.19 29);
+      --accent-ink: oklch(0.628 0.258 29);
     }
     .dark, .dark-page, .dark-hero, .magazine-band, .cta, .site-footer, .mag-hero, .ticker {
-      --accent-ink: oklch(0.5 0.22 29);
+      --accent-ink: oklch(0.628 0.258 29);
     }
   }
 }
@@ -279,10 +272,10 @@
     --line-strong: rgba(244, 244, 244, 0.34);
     --line-dark: rgba(15, 15, 15, 0.16);
     --line-dark-strong: rgba(15, 15, 15, 0.34);
-    --accent-ink: #FF1A1A;
+    --accent-ink: #FF0000;
   }
   .dark, .dark-page, .dark-hero, .magazine-band, .cta, .site-footer, .mag-hero, .ticker {
-    --accent-ink: #C00000;
+    --accent-ink: #FF0000;
   }
 }
 
@@ -296,7 +289,7 @@
 .site-footer,
 .mag-hero,
 .ticker {
-  --accent-ink: #FF1A1A; /* bright red on dark ground */
+  --accent-ink: #FF0000; /* pure red on dark ground */
 }
 .toolbox-band {
   --accent-ink: #0F0F0F; /* black on the red band */
@@ -871,7 +864,7 @@ hr {
   width: 36px;
   height: 36px;
   object-fit: contain;
-  filter: hue-rotate(-50deg) saturate(1.2);
+  /* pure red mark — no hue-rotate */
 }
 
 .brand-name {
