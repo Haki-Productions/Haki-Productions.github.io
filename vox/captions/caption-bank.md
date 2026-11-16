@@ -258,7 +258,7 @@ Link in bio. Or DM "LAUNCH".
 Caption:
 One month of work. One post.
 
-Six frames. Six different clients, in-house projects and experiments. This is what a month looks like when the crew is busy.
+Six frames. Six different projects, in-house and client work side by side. This is what a month looks like when the crew is busy.
 
 Which one hits hardest? Tell us in the comments.
 
