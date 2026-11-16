@@ -199,7 +199,7 @@
   --purple: #590E5B;       /* Lord Purple: tertiary accent, demoted from main */
   --crimson: #FF0000;      /* Regent Crimson -> original pure red */
   --yellow: #F5E411;       /* Button 2 (assumed) */
-  --copper: #C25A36;       /* thin divider rules (assumed) */
+  --rule: #6d6961;       /* thin divider rules (assumed) */
   --green-deep: #1B5E20;   /* deep green: text accent on paper */
   --accent-ink: #1B5E20;   /* text accent on paper: deep green (7.15:1 AA) */
   --muted: #6d6961;
@@ -244,7 +244,7 @@
     --purple: oklch(0.42 0.16 320);
     --crimson: oklch(0.628 0.258 29);
     --yellow: oklch(0.91 0.19 100);
-    --copper: oklch(0.56 0.14 45);
+    --rule: oklch(0.48 0.008 92);
     --green-deep: oklch(0.52 0.14 145);
     --accent-ink: oklch(0.52 0.14 145);
     --muted: oklch(0.48 0.008 92);
@@ -315,7 +315,7 @@
   --muted: #aaa59a; --muted-dark: #6d6961;
   --line: rgba(244,244,244,0.18); --line-strong: rgba(244,244,244,0.34);
   --line-dark: rgba(15,15,15,0.16); --line-dark-strong: rgba(15,15,15,0.34);
-  --accent-ink: #FF1A1A;
+  --accent-ink: #FF0000;
 }
 @supports (color: oklch(0.5 0.2 20)) {
   :root[data-theme="light"] {
@@ -353,7 +353,7 @@
 :root[data-theme="dark"] .site-footer,
 :root[data-theme="dark"] .mag-hero,
 :root[data-theme="dark"] .ticker {
-  --accent-ink: #FF1A1A;
+  --accent-ink: #FF0000;
 }
 
 /* Text accent flips with ground: bright red on dark, black on the action band.
@@ -588,12 +588,12 @@ hr {
   margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   min-height: 44px;
   height: 44px;
-  padding: 0 12px;
+  padding: 0 13px;
   border: 1px solid var(--line-strong);
-  border-radius: 999px;
+  border-radius: 2px;
   background: transparent;
   color: var(--muted);
   font-family: var(--font-mono);
@@ -601,10 +601,23 @@ hr {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out), border-color 0.18s var(--ease-out), transform 0.12s var(--ease-out);
 }
-.theme-toggle .theme-glyph { display: inline-block; width: 11px; text-align: center; }
-.theme-toggle:hover { border-color: var(--action); color: var(--on-action); background: var(--red-tint); }
+.theme-toggle .theme-glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  font-size: 10px;
+  line-height: 1;
+}
+.theme-toggle .theme-name { min-width: 38px; text-align: left; }
+.theme-toggle:hover { border-color: var(--action); color: var(--on-action); background: var(--action); }
+.theme-toggle:hover .theme-glyph { border-color: var(--on-action); }
+.theme-toggle:active { transform: translateY(1px); }
+.theme-toggle:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }
 
 
 
