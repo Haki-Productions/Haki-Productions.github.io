@@ -14,7 +14,7 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-002 | P0 | Unopened | Site is not deployed. No host, no `robots.txt`, no sitemap, no 404. | `site/` | A site nobody can reach sells nothing | OPEN |
 | JUG-004 | P0 | Leaking | Inquiry form is `mailto:` only, to an address on a dead domain. | `contact.html:69` | There is currently **no working contact path at all** | OPEN |
 | JUG-010 | P1 | Broken | Footer Instagram points at `@soulterror00`, the streetwear label, on 7 of 8 pages. | see evidence | Every visitor who wants the agency lands on a hoodie brand | OPEN |
-| JUG-001 | P1 | Unopened | No git repository. | project root | One bad edit and there is no way back | OPEN |
+| JUG-001 | — | Unopened | No git repository. | project root | — | CLOSED 16 Nov |
 | JUG-003 | P1 | Unopened | No analytics. | all pages | Cannot tell a traffic problem from an offer problem | OPEN |
 | JUG-006 | P1 | Stale | "Booking Q1 2027" signals full capacity while the goal is a first client. | `index.html:73`, `links.html:29` | Turns away the exact buyer being chased | OPEN |
 | JUG-011 | P1 | Leaking | Toolbox templates are mailto requests. | `toolbox.html` | Work is created, no email is captured | OPEN |
@@ -28,7 +28,7 @@ Status: `OPEN` · `BLOCKED` (needs a human) · `CLOSED` · `FALSE` (finding did 
 | JUG-007 | — | Stale | Audience agent quoted v1 prices. | `.opencode/agents/audience.md` | — | CLOSED 16 Nov |
 | JUG-008 | — | Unverified | Claimed the pitch deck carried stale v2 prices. | `brand/deck/*.pdf` | — | FALSE 16 Nov |
 
-**Totals:** 3 P0 · 5 P1 · 3 P2 · 2 P3 · 2 blocked · 1 closed · 1 false
+**Totals:** 3 P0 · 4 P1 · 3 P2 · 2 P3 · 2 blocked · 2 closed · 1 false
 
 ---
 
@@ -151,3 +151,4 @@ Largest: work-compleye.png 5.75 MB, work-rashguard.png 0.76 MB,
 |---|---|---|---|
 | JUG-007 | 16 Nov 2026 | `audience.md` now quotes v2 prices (€1,950 / €2,500 / €2,400 / €750 / €1,800), minimum €750, retainers from €1,950, prices exclude VAT. Budget segment raised to €750–€3,000. | `grep 'The Engine' .opencode/agents/audience.md` |
 | JUG-008 | 16 Nov 2026 | Finding did not hold. Deck carries no prices. | `grep '€\|EUR\|price' docs/DECK-TEXT.txt` → no matches |
+| JUG-001 | 16 Nov 2026 | `git init -b main`, `.gitignore` excludes the 16 reference clones, first commit `ef87502`. 103 files, 30.4 MB. | `git log --oneline` · `git status --porcelain` → 0 changes |
