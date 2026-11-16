@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T00:00:00Z",
+  "title": "Design System: Haki Productions",
+  "extensions": {
+    "colorMeta": {
+      "near-black-ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "oklch(0.145 0.004 95)",
+        "tonalRamp": [
+          "oklch(0.145 0.004 95)",
+          "oklch(0.25 0.004 95)",
+          "oklch(0.35 0.004 95)",
+          "oklch(0.45 0.004 95)",
+          "oklch(0.55 0.004 95)",
+          "oklch(0.7 0.004 95)",
+          "oklch(0.85 0.004 95)",
+          "oklch(0.95 0.004 95)"
+        ]
+      },
+      "press-paper": {
+        "role": "neutral",
+        "displayName": "Press Paper",
+        "canonical": "oklch(0.965 0.003 95)",
+        "tonalRamp": [
+          "oklch(0.2 0.003 95)",
+          "oklch(0.35 0.003 95)",
+          "oklch(0.5 0.003 95)",
+          "oklch(0.65 0.003 95)",
+          "oklch(0.78 0.003 95)",
+          "oklch(0.88 0.003 95)",
+          "oklch(0.93 0.006 95)",
+          "oklch(0.965 0.003 95)"
+        ]
+      },
+      "hot-pink": {
+        "role": "primary",
+        "displayName": "Hot Pink",
+        "canonical": "oklch(0.68 0.255 355)",
+        "tonalRamp": [
+          "oklch(0.25 0.12 355)",
+          "oklch(0.35 0.18 355)",
+          "oklch(0.45 0.22 355)",
+          "oklch(0.53 0.22 355)",
+          "oklch(0.62 0.25 355)",
+          "oklch(0.68 0.255 355)",
+          "oklch(0.8 0.14 355)",
+          "oklch(0.92 0.06 355)"
+        ]
+      },
+      "pulp": {
+        "role": "neutral",
+        "displayName": "Pulp",
+        "canonical": "oklch(0.93 0.006 95)",
+        "tonalRamp": [
+          "oklch(0.2 0.003 95)",
+          "oklch(0.35 0.003 95)",
+          "oklch(0.5 0.003 95)",
+          "oklch(0.65 0.003 95)",
+          "oklch(0.78 0.003 95)",
+          "oklch(0.88 0.003 95)",
+          "oklch(0.93 0.006 95)",
+          "oklch(0.97 0.003 95)"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "oklch(0.48 0.008 92)",
+        "tonalRamp": [
+          "oklch(0.2 0.006 92)",
+          "oklch(0.3 0.006 92)",
+          "oklch(0.38 0.006 92)",
+          "oklch(0.48 0.008 92)",
+          "oklch(0.58 0.008 92)",
+          "oklch(0.7 0.008 92)",
+          "oklch(0.82 0.008 92)",
+          "oklch(0.93 0.008 92)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Poster-scale page and section headlines." },
+      "accent": { "displayName": "Italic Accent", "purpose": "One emphasis word inside a display headline." },
+      "body": { "displayName": "Body", "purpose": "Reading copy, 62–68ch measure." },
+      "body-small": { "displayName": "Small Body", "purpose": "Card descriptions, captions and dense supporting copy." },
+      "note": { "displayName": "Note", "purpose": "Longer mono notes set in sentence case." },
+      "label": { "displayName": "Label", "purpose": "Metadata, tags, buttons, captions, status lines. 11px functional floor." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default easing for entrances and hover state." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Symmetric transitions such as the mobile menu." },
+      { "name": "hero-rise", "value": "0.95s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "One-time title rise and de-blur on page load." },
+      { "name": "hero-frame", "value": "1.05s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "One-time clip reveal on the hero image." },
+      { "name": "card-hover", "value": "0.35s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "2px card lift and 1.03 image scale." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "1080px" },
+      { "name": "stack", "value": "900px" },
+      { "name": "mobile", "value": "720px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pink pill for the single main action in a view.",
+      "html": "<button class=\"ds-btn-primary\">START A PROJECT</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 22px; border:1px solid transparent; border-radius:999px; background:var(--pink, #ff2d8d); color:var(--ink, #0d0d0c); font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; cursor:pointer; transition:background 0.3s cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1); } .ds-btn-primary:hover { background:var(--ink, #0d0d0c); color:var(--paper, #f6f6f3); } .ds-btn-primary:active { transform:translateY(1px); } .ds-btn-primary:focus-visible { outline:2px solid var(--pink, #ff2d8d); outline-offset:3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined pill for the secondary action beside a primary button.",
+      "html": "<button class=\"ds-btn-ghost\">SEE THE WORK</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 22px; border:1px solid rgba(13,13,12,0.34); border-radius:999px; background:transparent; color:var(--ink, #0d0d0c); font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; cursor:pointer; transition:background 0.3s cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.22,1,0.36,1); } .ds-btn-ghost:hover { background:var(--ink, #0d0d0c); color:var(--paper, #f6f6f3); } .ds-btn-ghost:focus-visible { outline:2px solid var(--pink, #ff2d8d); outline-offset:3px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Pill filter with an active ink state, used on work and toolbox grids.",
+      "html": "<button class=\"ds-chip ds-chip-active\" aria-pressed=\"true\">ALL WORK</button> <button class=\"ds-chip\" aria-pressed=\"false\">FASHION</button>",
+      "css": ".ds-chip { display:inline-flex; align-items:center; min-height:44px; padding:0 15px; border:1px solid rgba(13,13,12,0.34); border-radius:999px; background:transparent; color:var(--ink, #0d0d0c); font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.25s cubic-bezier(0.22,1,0.36,1), color 0.25s cubic-bezier(0.22,1,0.36,1), border-color 0.25s cubic-bezier(0.22,1,0.36,1); } .ds-chip:hover { border-color:var(--ink, #0d0d0c); } .ds-chip-active { background:var(--ink, #0d0d0c); border-color:var(--ink, #0d0d0c); color:var(--paper, #f6f6f3); } .ds-chip:focus-visible { outline:2px solid var(--pink, #ff2d8d); outline-offset:3px; }"
+    },
+    {
+      "name": "Metadata Rail",
+      "kind": "custom",
+      "description": "Top-of-hero mono rail with pink dot separators; stacks to a 2x2 grid on mobile.",
+      "html": "<div class=\"ds-rail\"><span>EST. 2021</span><span>5 FRONTS</span><span>BOOKING Q1 2027</span><span>HUMAN-MADE</span></div>",
+      "css": ".ds-rail { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 16px; padding:0 0 14px; border-bottom:1px solid rgba(13,13,12,0.16); font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink, #0d0d0c); } .ds-rail span { display:inline-flex; align-items:center; gap:8px; } .ds-rail span + span::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--pink, #ff2d8d); } @media (max-width:720px) { .ds-rail { display:grid; grid-template-columns:1fr 1fr; } .ds-rail span + span::before { display:none; } }"
+    },
+    {
+      "name": "Work Card",
+      "kind": "card",
+      "refersTo": "work-card",
+      "description": "Image-first case card that lifts 2px and scales its image on hover.",
+      "html": "<a class=\"ds-work\" href=\"#\"><span class=\"ds-work-media\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23201f1c'/%3E%3C/svg%3E\" alt=\"\"></span><span class=\"ds-work-name\">SOUL TERROR</span><span class=\"ds-work-meta\">CAMPAIGN / 2024</span></a>",
+      "css": ".ds-work { display:block; text-decoration:none; color:var(--ink, #0d0d0c); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); } .ds-work:hover { transform:translateY(-2px); } .ds-work-media { display:block; overflow:hidden; border-radius:2px; background:#171715; aspect-ratio:4/3; } .ds-work-media img { display:block; width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1); } .ds-work:hover .ds-work-media img { transform:scale(1.03); } .ds-work-name { display:block; margin-top:14px; font-family:var(--font-display, 'Anton', sans-serif); font-size:26px; line-height:0.95; text-transform:uppercase; } .ds-work-meta { display:block; margin-top:6px; font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#6d6961; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Underlined form field with a mono label and pink focus border.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">EMAIL</span><input class=\"ds-field-input\" type=\"email\" placeholder=\"you@studio.com\"></label>",
+      "css": ".ds-field { display:block; } .ds-field-label { display:block; margin-bottom:7px; font-family:var(--font-mono, 'Space Mono', monospace); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#6d6961; } .ds-field-input { width:100%; min-height:46px; padding:0; border:0; border-bottom:1px solid rgba(13,13,12,0.34); border-radius:0; background:transparent; color:var(--ink, #0d0d0c); font-family:var(--font-body, 'Instrument Sans', sans-serif); font-size:16px; } .ds-field-input:focus { border-bottom-color:var(--pink, #ff2d8d); } .ds-field-input:focus-visible { outline:2px solid var(--pink, #ff2d8d); outline-offset:2px; } .ds-field-input::placeholder { color:#6d6961; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Press Proof",
+    "overview": "The site looks like a campaign proof pulled fresh off the press: neutral press paper, dense black ink, hard rules, and one fluorescent pink marker stroke. It is streetwear-adjacent without being a lookbook, editorial without being a magazine, and direct without looking like a SaaS template. Type does the heavy lifting; photography supplies the proof; ornament is limited to hairlines, a faint paper grain, and the occasional rotated sticker.",
+    "keyCharacteristics": [
+      "Press paper and near-black ink as the base; hot pink as the only accent.",
+      "Anton display type at poster scale, Instrument Serif italic for emphasis, Instrument Sans for reading, Space Mono for labels.",
+      "Full-height first screens with a metadata rail at the top and the headline anchored low.",
+      "Hairline rules, flat surfaces, clipped photography, a 3.5% paper-grain overlay.",
+      "Honest labelling: in-house, client, in development. No borrowed proof."
+    ],
+    "rules": [
+      { "name": "The One Marker Rule", "body": "Pink covers no more than roughly 10% of any screen. If two pink elements compete in one view, one of them is wrong.", "section": "colors" },
+      { "name": "The One Italic Rule", "body": "Instrument Serif italic appears once per headline, on the word that carries the attitude. It is not a second display face.", "section": "typography" },
+      { "name": "The Rail Rule", "body": "Metadata is set in Space Mono uppercase at the top or bottom edge of a section, separated by 5px pink dots or hairline rules. It is never mixed into body copy.", "section": "layout" },
+      { "name": "The Flat Proof Rule", "body": "A surface earns separation from a rule or a tonal block, never from a drop shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the first screen to one section.",
+      "Do put metadata in a rail at the top or bottom of a hero.",
+      "Do use one italic accent word per display headline.",
+      "Do label work honestly as in-house, client, or in development.",
+      "Do keep body measure at 62–68ch and display tracking at or above -0.04em.",
+      "Do make every interactive target at least 44px on touch, and give keyboard focus a visible pink ring.",
+      "Do let photography sit in clipped rectangles with a 2px hover scale.",
+      "Do use the magazine page's numbered captions as editorial furniture."
+    ],
+    "donts": [
+      "Don't add scroll-triggered fades, staggered reveals, or parallax.",
+      "Don't put descriptive captions under marketing images.",
+      "Don't use pink as a section background except the single toolbox band.",
+      "Don't use grey text on pink, or grey text on ink below 4.5:1.",
+      "Don't introduce drop shadows, glassmorphism, gradient blobs, or rounded 16px cards.",
+      "Don't center-align marketing sections.",
+      "Don't use a second accent color.",
+      "Don't claim client work, results, or testimonials that are not documented."
+    ]
+  }
+}

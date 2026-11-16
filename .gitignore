@@ -1,0 +1,31 @@
+# ── Reference clones ──────────────────────────────────────────
+# Learning material, not part of the Haki project. ~730 MB total.
+agent-skills/
+cal-diy/
+caveman/
+claude-mem/
+cybersecurity-skills/
+graphify/
+humanizer/
+i-have-adhd/
+marketingskills/
+mattpocock-skills/
+paperclip/
+playwright-mcp/
+ponytail/
+ppt-master/
+superpowers/
+yt-dlp/
+
+# ── OS noise ──────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ── Editors ───────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── Local scratch ─────────────────────────────────────────────
+*.log
+*.tmp
