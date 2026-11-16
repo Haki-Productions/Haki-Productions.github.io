@@ -119,9 +119,13 @@
       <!-- Leads -->
       <section class="panel" aria-labelledby="leadsTitle" style="margin-top:var(--gap)">
         <div class="panel-head">
-          <h2 id="leadsTitle">Lead ledger</h2>
-          <span class="hint">Source · stage · four axes · next action</span>
+          <h2 id="leadsTitle">Pipeline board</h2>
+          <div class="view-toggle" role="group" aria-label="Pipeline view">
+            <button type="button" class="view-btn" id="viewBoard" aria-pressed="true">Board</button>
+            <button type="button" class="view-btn" id="viewTable" aria-pressed="false">Table</button>
+          </div>
         </div>
+        <p class="board-hint">Drag a card between stages, or use Prev / Next. Every card carries the four axes and one next action.</p>
 
         <div class="editor" id="editor">
           <h3 class="editor-title" id="editorTitle">New lead</h3>
@@ -193,7 +197,9 @@
           </form>
         </div>
 
-        <div class="table-wrap">
+        <div class="kanban" id="kanban" aria-label="Pipeline kanban board"></div>
+
+        <div class="table-wrap" id="tableView" hidden>
           <table class="data">
             <thead>
               <tr>

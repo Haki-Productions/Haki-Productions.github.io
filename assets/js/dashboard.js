@@ -45,6 +45,7 @@
   const empty = () => ({
     leads: [],
     prevention: [],
+    view: "board",
     scorecard: { week: "", conversations: 0, replies: 0, calls: 0, proposals: 0, deposits: 0 },
   });
 
@@ -62,6 +63,7 @@
         state = {
           leads: Array.isArray(parsed.leads) ? parsed.leads : [],
           prevention: Array.isArray(parsed.prevention) ? parsed.prevention : [],
+          view: parsed.view === "table" ? "table" : "board",
           scorecard: Object.assign(empty().scorecard, parsed.scorecard || {}),
         };
       }
@@ -222,6 +224,77 @@
     }).join("");
   }
 
+  /* ---------- render: kanban board ---------- */
+
+  function renderKanban() {
+    const board = $("#kanban");
+    if (!board) return;
+
+    board.innerHTML = STAGES.map((stage) => {
+      const leads = state.leads.filter((lead) => (lead.stage || "New") === stage);
+      const cards = leads.map((lead) => {
+        const overdue = isOverdue(lead);
+        const stageIndex = STAGES.indexOf(stage);
+        const prev = stageIndex > 0 ? stageIndex - 1 : null;
+        const next = stageIndex < STAGES.length - 1 ? stageIndex + 1 : null;
+        const axisTags = [lead.budget, lead.deadline, lead.authority, lead.need]
+          .filter(Boolean)
+          .map((value) => `<span class="kcard-axis">${esc(value)}</span>`)
+          .join("");
+
+        return `<article class="kcard" draggable="true" tabindex="0"
+          data-id="${esc(lead.id)}" data-stage="${esc(stage)}"
+          aria-label="Lead ${esc(lead.name)}, ${esc(stage)}">
+          <h4 class="kcard-name">${esc(lead.name || "Unnamed lead")}</h4>
+          <p class="kcard-meta">${esc(lead.source || "Unsourced")} · ${esc(lead.createdAt || "—")}</p>
+          ${axisTags ? `<div class="kcard-axes">${axisTags}</div>` : ""}
+          <p class="kcard-next">${esc(lead.nextAction || "No next action")}
+            <span class="kcard-date">${esc(lead.nextDate || "no date")}${overdue ? ` <span class="flag">overdue</span>` : ""}</span>
+          </p>
+          <div class="kcard-actions">
+            <span class="kcard-move">
+              ${prev !== null ? `<button type="button" class="link-btn" data-move="${prev}" aria-label="Move ${esc(lead.name)} to ${esc(STAGES[prev])}">Prev</button>` : ""}
+              ${next !== null ? `<button type="button" class="link-btn" data-move="${next}" aria-label="Move ${esc(lead.name)} to ${esc(STAGES[next])}">Next</button>` : ""}
+            </span>
+            <span class="kcard-tools">
+              <button type="button" class="link-btn" data-edit="${esc(lead.id)}">Edit</button>
+              <button type="button" class="link-btn" data-del="${esc(lead.id)}">Delete</button>
+            </span>
+          </div>
+        </article>`;
+      }).join("");
+
+      return `<section class="kanban-col" data-stage="${esc(stage)}" aria-label="${esc(stage)}, ${leads.length} lead${leads.length === 1 ? "" : "s"}">
+        <header class="kanban-col-head">
+          <h3>${esc(stage)}</h3>
+          <span class="kanban-count">${leads.length}</span>
+        </header>
+        <div class="kanban-cards">
+          ${cards || `<p class="kanban-empty">Drop a lead here</p>`}
+        </div>
+        <button type="button" class="kanban-add" data-add-stage="${esc(stage)}">Add lead</button>
+      </section>`;
+    }).join("");
+  }
+
+  function applyView() {
+    const board = $("#kanban");
+    const table = $("#tableView");
+    if (!board || !table) return;
+    board.hidden = state.view !== "board";
+    table.hidden = state.view !== "table";
+    $("#viewBoard").setAttribute("aria-pressed", String(state.view === "board"));
+    $("#viewTable").setAttribute("aria-pressed", String(state.view === "table"));
+  }
+
+  function moveLead(id, stage) {
+    const lead = state.leads.find((item) => item.id === id);
+    if (!lead || !STAGES.includes(stage) || lead.stage === stage) return;
+    lead.stage = stage;
+    lead.updatedAt = todayISO();
+    save(`Moved "${lead.name}" to ${stage}.`);
+  }
+
   /* ---------- render: prevention ---------- */
 
   function renderPrevention() {
@@ -257,18 +330,20 @@
   function render() {
     renderMetrics();
     renderLeads();
+    renderKanban();
+    applyView();
     renderPrevention();
     renderScorecard();
   }
 
   /* ---------- lead editor ---------- */
 
-  function openEditor(lead) {
+  function openEditor(lead, presetStage) {
     editingId = lead ? lead.id : null;
     const form = $("#leadForm");
     form.reset();
 
-    const values = lead || { stage: "New", source: "Website form", budget: "", deadline: "", authority: "", need: "", prevention: "", nextAction: "", nextDate: "" };
+    const values = lead || { stage: presetStage && STAGES.includes(presetStage) ? presetStage : "New", source: "Website form", budget: "", deadline: "", authority: "", need: "", prevention: "", nextAction: "", nextDate: "" };
     document.getElementById("f_name").value = lead ? lead.name : "";
     document.getElementById("f_source").value = values.source;
     document.getElementById("f_stage").value = values.stage;
@@ -444,6 +519,86 @@
     });
 
     $("#emptyAdd").addEventListener("click", () => openEditor(null));
+
+    $("#viewBoard").addEventListener("click", () => { state.view = "board"; save(); });
+    $("#viewTable").addEventListener("click", () => { state.view = "table"; save(); });
+
+    $("#kanban").addEventListener("click", (event) => {
+      const add = event.target.closest("[data-add-stage]");
+      const move = event.target.closest("[data-move]");
+      const edit = event.target.closest("[data-edit]");
+      const del = event.target.closest("[data-del]");
+
+      if (add) { openEditor(null, add.getAttribute("data-add-stage")); return; }
+      if (move) {
+        const card = move.closest(".kcard");
+        moveLead(card.getAttribute("data-id"), STAGES[Number(move.getAttribute("data-move"))]);
+        return;
+      }
+      if (edit) {
+        const lead = state.leads.find((l) => l.id === edit.getAttribute("data-edit"));
+        if (lead) openEditor(lead);
+        return;
+      }
+      if (del) {
+        const lead = state.leads.find((l) => l.id === del.getAttribute("data-del"));
+        if (lead && window.confirm(`Delete "${lead.name}"? This cannot be undone.`)) {
+          state.leads = state.leads.filter((l) => l.id !== lead.id);
+          save("Lead deleted.");
+        }
+      }
+    });
+
+    $("#kanban").addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      const card = event.target.closest(".kcard");
+      if (!card || event.target !== card) return;
+      const lead = state.leads.find((l) => l.id === card.getAttribute("data-id"));
+      if (lead) openEditor(lead);
+    });
+
+    let draggingId = null;
+
+    $("#kanban").addEventListener("dragstart", (event) => {
+      const card = event.target.closest(".kcard");
+      if (!card) return;
+      draggingId = card.getAttribute("data-id");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", draggingId);
+      card.classList.add("dragging");
+    });
+
+    $("#kanban").addEventListener("dragend", () => {
+      draggingId = null;
+      document.querySelectorAll(".kcard.dragging").forEach((card) => card.classList.remove("dragging"));
+      document.querySelectorAll(".kanban-col.drop-target").forEach((col) => col.classList.remove("drop-target"));
+    });
+
+    $("#kanban").addEventListener("dragover", (event) => {
+      const col = event.target.closest(".kanban-col");
+      if (!col) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+      document.querySelectorAll(".kanban-col.drop-target").forEach((other) => {
+        if (other !== col) other.classList.remove("drop-target");
+      });
+      col.classList.add("drop-target");
+    });
+
+    $("#kanban").addEventListener("dragleave", (event) => {
+      const col = event.target.closest(".kanban-col");
+      if (col && !col.contains(event.relatedTarget)) col.classList.remove("drop-target");
+    });
+
+    $("#kanban").addEventListener("drop", (event) => {
+      const col = event.target.closest(".kanban-col");
+      if (!col) return;
+      event.preventDefault();
+      col.classList.remove("drop-target");
+      const id = draggingId || event.dataTransfer.getData("text/plain");
+      if (id) moveLead(id, col.getAttribute("data-stage"));
+      draggingId = null;
+    });
 
     $("#scoreForm").addEventListener("submit", (event) => {
       event.preventDefault();

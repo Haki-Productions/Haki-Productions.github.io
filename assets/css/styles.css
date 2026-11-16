@@ -170,14 +170,22 @@
 }
 
 :root {
-  --ink: #0d0d0c;
-  --ink-2: #171715;
-  --paper: #f6f6f3;
-  --paper-2: #ecece8;
-  --red: #ff0000;
-  --red-deep: #cc0000;
-  --red-soft: #ff5555;
-  --red-tint: rgba(255, 0, 0, 0.10);
+  /* Brand palette — purple-led, black ground, green action, crimson accent.
+     Source: eye/design-system/haki-DESIGN.md */
+  --ink: #0F0F0F;          /* King of Darkness Black — ground */
+  --ink-2: #171715;        /* soft black — image grounds */
+  --paper: #F4F4F4;        /* Text — foreground on dark */
+  --paper-2: #ecece8;      /* Pulp — secondary paper */
+  --purple: #590E5B;       /* Lord Purple — main brand colour */
+  --green: #50E411;        /* Envenom Green — primary action / button / focus */
+  --crimson: #EF1B1B;      /* Regent Crimson — warm red accent (across the board) */
+  --yellow: #F5E411;       /* Button 2 */
+  --copper: #C25A36;       /* thin divider rules */
+  --red: #50E411;          /* action alias -> green; text always black */
+  --red-deep: #590E5B;     /* legacy alias -> purple */
+  --red-soft: #EF1B1B;     /* legacy alias -> crimson */
+  --red-tint: rgba(80, 228, 17, 0.10);  /* green focus tint */
+  --accent-ink: #590E5B;   /* text accent on paper: purple */
   --muted: #6d6961;
   --muted-dark: #aaa59a;
   --line: rgba(13, 13, 12, 0.16);
@@ -205,17 +213,39 @@
 /* impeccable-disable-next-line design-system-color -- feature query, not a palette color */
 @supports (color: oklch(0.5 0.2 20)) {
   :root {
-    --ink: oklch(0.145 0.004 95);
+    --ink: oklch(0.142 0 0);
     --ink-2: oklch(0.19 0.005 95);
-    --paper: oklch(0.965 0.003 95);
+    --paper: oklch(0.965 0 0);
     --paper-2: oklch(0.93 0.006 95);
-    --red: oklch(0.628 0.258 29);
-    --red-deep: oklch(0.53 0.22 29);
-    --red-soft: oklch(0.73 0.18 29);
-    --red-tint: oklch(0.628 0.258 29 / 0.10);
+    --purple: oklch(0.42 0.16 320);
+    --green: oklch(0.83 0.26 135);
+    --crimson: oklch(0.62 0.24 25);
+    --yellow: oklch(0.91 0.19 100);
+    --copper: oklch(0.56 0.14 45);
+    --red: oklch(0.83 0.26 135);
+    --red-deep: oklch(0.42 0.16 320);
+    --red-soft: oklch(0.62 0.24 25);
+    --red-tint: oklch(0.83 0.26 135 / 0.10);
+    --accent-ink: oklch(0.42 0.16 320);
     --muted: oklch(0.48 0.008 92);
     --muted-dark: oklch(0.73 0.008 92);
   }
+}
+
+/* Text accent flips with ground: green on dark, black on the green band.
+   Purple default (on paper) is set in :root above. */
+.dark,
+.dark-page,
+.dark-hero,
+.magazine-band,
+.cta,
+.site-footer,
+.mag-hero,
+.ticker {
+  --accent-ink: #50E411;
+}
+.toolbox-band {
+  --accent-ink: #0F0F0F; /* black on the green band */
 }
 
 /* ---------- reset ---------- */
@@ -414,7 +444,7 @@ hr {
 
 .display .pink,
 .pink {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .lede {
@@ -449,7 +479,7 @@ hr {
 }
 
 .mark {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .measure {
@@ -695,7 +725,7 @@ hr {
 
 .link-arrow:hover {
   gap: 14px;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .link-arrow:hover span {
@@ -722,7 +752,7 @@ hr {
 
 .tag-red {
   background: var(--red);
-  border-color: var(--red);
+  border-color: var(--accent-ink);
   color: var(--ink);
 }
 
@@ -968,7 +998,7 @@ body.nav-open .site-header {
   font-style: italic;
   text-transform: none;
   letter-spacing: -0.02em;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .hero-lede {
@@ -1000,7 +1030,7 @@ body.nav-open .site-header {
 .hero-meta-bold {
   font-weight: 700;
   font-size: clamp(14px, 4vw, 18px);
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .hero-meta span {
@@ -1104,7 +1134,7 @@ body.nav-open .site-header {
 
 .scroll-cue::after {
   content: "↓";
-  color: var(--red);
+  color: var(--accent-ink);
   animation: bob 1.8s var(--ease-in-out) infinite;
 }
 
@@ -1179,7 +1209,7 @@ body.nav-open .site-header {
 
 .ticker-item::after {
   content: "✦";
-  color: var(--red);
+  color: var(--accent-ink);
   font-size: 12px;
 }
 
@@ -1218,7 +1248,7 @@ body.nav-open .site-header {
   font-style: italic;
   font-size: 4.3em;
   line-height: 0.72;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .manifesto-copy strong {
@@ -1411,7 +1441,7 @@ body.nav-open .site-header {
 
 .work-card:hover .work-arrow {
   background: var(--red);
-  border-color: var(--red);
+  border-color: var(--accent-ink);
   color: var(--ink);
   transform: rotate(45deg);
 }
@@ -1540,7 +1570,7 @@ body.nav-open .site-header {
 
 .service-item[open] .service-plus {
   background: var(--red);
-  border-color: var(--red);
+  border-color: var(--accent-ink);
   color: var(--ink);
   transform: rotate(45deg);
 }
@@ -1581,7 +1611,7 @@ body.nav-open .site-header {
 
 .service-body li::before {
   content: "→";
-  color: var(--red);
+  color: var(--accent-ink);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -1641,7 +1671,7 @@ body.nav-open .site-header {
 }
 
 .magazine-top b {
-  color: var(--red);
+  color: var(--accent-ink);
   font-weight: 400;
 }
 
@@ -1780,7 +1810,7 @@ body.nav-open .site-header {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .process-step h3 {
@@ -2198,7 +2228,7 @@ body.nav-open .site-header {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 .case-copy p {
@@ -2311,7 +2341,7 @@ body.nav-open .site-header {
 }
 
 .friends-strip a:hover {
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 /* ---------- services page ---------- */
@@ -2380,7 +2410,7 @@ body.nav-open .site-header {
 
 .offer li::before {
   content: "—";
-  color: var(--red-deep);
+  color: var(--accent-ink);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -2475,7 +2505,7 @@ body.nav-open .site-header {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .cap h3 {
@@ -2525,7 +2555,7 @@ body.nav-open .site-header {
   flex: none;
   font-family: var(--font-mono);
   font-size: 18px;
-  color: var(--red-deep);
+  color: var(--accent-ink);
   transition: transform 0.3s var(--ease-out);
 }
 
@@ -2569,7 +2599,7 @@ body.nav-open .site-header {
   font-style: italic;
   font-size: 4.2em;
   line-height: 0.72;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .values {
@@ -2589,7 +2619,7 @@ body.nav-open .site-header {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .value h3 {
@@ -2632,11 +2662,11 @@ body.nav-open .site-header {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 .eco-col.core h3 {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .eco-col > p {
@@ -2823,7 +2853,7 @@ body.nav-open .site-header {
 .tool-top span + span::before {
   content: "·";
   margin-right: 8px;
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 .tool-card h3 {
@@ -2857,7 +2887,7 @@ body.nav-open .site-header {
 
 .tool-card[open] .tool-plus {
   background: var(--red);
-  border-color: var(--red);
+  border-color: var(--accent-ink);
   color: var(--ink);
   transform: rotate(45deg);
 }
@@ -2884,7 +2914,7 @@ body.nav-open .site-header {
 }
 
 .tool-link:hover {
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 .tool-empty {
@@ -3002,7 +3032,7 @@ body.nav-open .site-header {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-bottom-color: var(--red);
+  border-bottom-color: var(--accent-ink);
 }
 
 .field input::placeholder,
@@ -3050,7 +3080,7 @@ body.nav-open .site-header {
 }
 
 .contact-aside a:hover {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .contact-steps {
@@ -3076,7 +3106,7 @@ body.nav-open .site-header {
   content: "0" counter(step);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .contact-list {
@@ -3148,7 +3178,7 @@ body.nav-open .site-header {
 }
 
 .mag-kicker b {
-  color: var(--red);
+  color: var(--accent-ink);
   font-weight: 400;
 }
 
@@ -3239,7 +3269,7 @@ body.nav-open .site-header {
   font-style: italic;
   font-size: 4.4em;
   line-height: 0.72;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .mag-letter-copy .mag-quote {
@@ -3352,7 +3382,7 @@ body.nav-open .site-header {
 .mag-contents .n {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 .mag-contents b {
@@ -3479,7 +3509,7 @@ body.nav-open .site-header {
 }
 
 .links-segment-num {
-  color: var(--red);
+  color: var(--accent-ink);
   font-weight: 700;
 }
 
@@ -3573,7 +3603,7 @@ body.nav-open .site-header {
 }
 
 .link-row:hover .link-num {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .link-label {
@@ -3609,7 +3639,7 @@ body.nav-open .site-header {
 
 .link-row.featured {
   background: var(--red);
-  border-color: var(--red);
+  border-color: var(--accent-ink);
   color: var(--ink);
 }
 
@@ -3653,7 +3683,7 @@ body.nav-open .site-header {
 }
 
 .links-foot a:hover {
-  color: var(--red-deep);
+  color: var(--accent-ink);
 }
 
 /* ---------- cursor label ---------- */
@@ -3737,7 +3767,7 @@ body.nav-open .site-header {
 }
 
 .footer-col a:hover {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .footer-wordmark {
@@ -3770,7 +3800,7 @@ body.nav-open .site-header {
 }
 
 .footer-bottom a:hover {
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 /* ---------- motion ---------- */
@@ -3918,19 +3948,19 @@ body.nav-open .site-header {
   [data-filter].is-active {
     background: var(--red);
     color: var(--ink);
-    border-color: var(--red);
+    border-color: var(--accent-ink);
   }
 
   /* form fields */
   input:focus, textarea:focus, select:focus {
-    border-color: var(--red);
+    border-color: var(--accent-ink);
   }
 
   /* link-arrow nudge already; add red sweep */
   .link-arrow { transition: gap 0.3s var(--ease-out), color 0.3s var(--ease-out); }
 
   /* section number / kicker shimmer on hover for cards */
-  .work-card a:hover .work-num { color: var(--red); transition: color 0.3s var(--ease-out); }
+  .work-card a:hover .work-num { color: var(--accent-ink); transition: color 0.3s var(--ease-out); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3969,7 +3999,7 @@ body.nav-open .site-header {
   font-size: 4.2em;
   line-height: 0.85;
   padding: 0.05em 0.12em 0 0;
-  color: var(--red);
+  color: var(--accent-ink);
 }
 
 .pullquote {
