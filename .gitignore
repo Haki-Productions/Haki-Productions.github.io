@@ -29,3 +29,6 @@ desktop.ini
 # ── Local scratch ─────────────────────────────────────────────
 *.log
 *.tmp
+
+# Local publish clone
+.publish/
