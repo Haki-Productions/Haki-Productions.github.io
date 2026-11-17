@@ -184,9 +184,9 @@
 }
 
 :root {
-  /* Brand palette: RED-led (head decision 2026-11-16).
-     Main action colour: original pure red #FF0000, black text on it (4.79:1 AA).
-     Purple is no longer the main colour; green kept as small focus/accent signal. */
+  /* Brand palette: theme-aware action (head decision 2026-11-17).
+     Light: green #50E411 fill. Dark: pure red #FF0000 fill. Both use black text.
+     Deep green #1B5E20 carries text on paper. Source of truth: docs/BRAND.md. */
   --ink: #0F0F0F;          /* King of Darkness Black: ground */
   --ink-2: #171715;        /* soft black: image grounds */
   --paper: #F4F4F4;        /* Text: foreground on dark */
@@ -453,7 +453,7 @@ button, [role="button"], .theme-toggle, .nav-cta, .filter-btn, .link-row {
 /* Instant tap (no 300ms delay) */
 a, button, [role="button"], summary, .filter-btn { touch-action: manipulation; }
 
-/* Press feedback — native buttons respond the instant the finger lands */
+/* Press feedback  /  native buttons respond the instant the finger lands */
 .btn:active, .nav-cta:active, .filter-btn:active, .theme-toggle:active {
   transform: scale(0.97);
 }
@@ -625,7 +625,9 @@ hr {
   color: var(--muted);
 }
 .register span { display: inline-flex; align-items: center; gap: 8px; }
-.register span:first-child::before {
+/* Direct child only: the old descendant selector also matched the theme glyph
+   nested in the toggle button, adding a second grid row that pushed its letter out. */
+.register > span:first-child::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -673,7 +675,7 @@ hr {
 
 
 /* ---------- Territory A: after-hours label HQ ---------- */
-/* Mono catalogue rail under the hero lede — the interface recedes */
+/* Mono catalogue rail under the hero lede  /  the interface recedes */
 .hero-subline {
   display: flex;
   flex-wrap: wrap;
@@ -689,7 +691,7 @@ hr {
 .hero-subline b { color: var(--ink); font-weight: 700; }
 .dark .hero-subline b, .dark-hero .hero-subline b { color: var(--paper); }
 
-/* Signal dot — red, restrained, one per rail */
+/* Signal dot  /  red, restrained, one per rail */
 .signal-dot {
   display: inline-block;
   width: 7px;
@@ -706,7 +708,7 @@ hr {
 }
 
 /* ---------- Opium graphic devices ---------- */
-/* Structural asterisk — an Opium-style footnote of meaning, not a symbol */
+/* Structural asterisk  /  an Opium-style footnote of meaning, not a symbol */
 .mark-asterisk {
   display: inline-block;
   font-family: var(--font-mono);
@@ -716,7 +718,7 @@ hr {
   transform: translateY(-0.1em);
 }
 
-/* One outlined line in the hero — anti-design tension */
+/* One outlined line in the hero  /  anti-design tension */
 .hero-title .line.outline {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--ink);
@@ -1548,7 +1550,9 @@ body.nav-open .site-header {
 
 .manifesto {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  /* Fluid column: Chakra Petch glyphs are much wider than the old condensed
+     display face. A fixed 220px let the headline paint into the copy column. */
+  grid-template-columns: clamp(220px, 30vw, 480px) minmax(0, 1fr);
   gap: clamp(30px, 7vw, 110px);
   align-items: start;
 }

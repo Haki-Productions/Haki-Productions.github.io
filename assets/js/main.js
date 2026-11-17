@@ -1,5 +1,5 @@
 /* ============================================================
-   HAKI PRODUCTIONS — site behaviour
+   HAKI PRODUCTIONS  /  site behaviour
    No dependencies. Everything degrades gracefully.
    ============================================================ */
 
@@ -184,8 +184,8 @@
       }
 
       const data = new FormData(form);
-      const to = form.getAttribute("data-mailto") || "hello@hakiproductions.com";
-      const subject = form.getAttribute("data-subject") || "Website inquiry — Haki Productions";
+      const to = form.getAttribute("data-mailto") || "producedbyhaki@gmail.com";
+      const subject = form.getAttribute("data-subject") || "Website inquiry / Haki Productions";
       const intro = form.getAttribute("data-intro") || "New inquiry from the Haki Productions website.";
       const lines = [];
 
@@ -252,7 +252,7 @@
         await navigator.clipboard.writeText(window.location.href);
         shareButton.textContent = "Link copied";
       } catch {
-        shareButton.textContent = "Copy failed — use the address bar";
+        shareButton.textContent = "Copy failed. Use the address bar.";
       }
 
       window.setTimeout(() => {
