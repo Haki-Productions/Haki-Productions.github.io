@@ -2,7 +2,7 @@
    HAKI PRODUCTIONS: design system v3 (theme-aware action)
    Black ground. Green #50E411 light / pure red #FF0000 dark action,
    both with black text. Deep green #1B5E20 for text on paper.
-   H1/Display: Mirage Gothic, body: Instrument Sans, labels: Space Mono.
+   H1/Display: Chakra Petch, body: Instrument Sans, labels: Space Mono.
    Accent: Instrument Serif. Color: OKLCH with sRGB fallbacks.
    Source of truth: docs/BRAND.md
    ============================================================ */
@@ -12,11 +12,13 @@
 
 
 @font-face {
-  font-family: "Mirage Gothic";
+  font-family: "Chakra Petch";
   font-style: normal;
-  font-weight: 400;
+  /* Heavy file mapped across the range: display rules are authored at 400.
+     Squared-cut techno letterforms = angular/compressed Opium wordmark energy. */
+  font-weight: 400 700;
   font-display: swap;
-  src: url("../fonts/mirage-gothic-400.woff2") format("woff2");
+  src: url("../fonts/chakra-petch-700-latin.woff2") format("woff2");
 }
 
 @font-face {
@@ -209,7 +211,7 @@
   --line-dark: rgba(246, 246, 243, 0.18);
   --line-dark-strong: rgba(246, 246, 243, 0.34);
 
-  --font-display: "Mirage Gothic", "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Chakra Petch", "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
   --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
