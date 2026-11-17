@@ -2,21 +2,14 @@
    HAKI PRODUCTIONS: design system v3 (theme-aware action)
    Black ground. Green #50E411 light / pure red #FF0000 dark action,
    both with black text. Deep green #1B5E20 for text on paper.
-   H1/Display: Azonix, body: Instrument Sans, labels: Space Mono.
+   H1/Display: Mirage Gothic, body: Instrument Sans, labels: Space Mono.
    Accent: Instrument Serif. Color: OKLCH with sRGB fallbacks.
    Source of truth: docs/BRAND.md
    ============================================================ */
 
 /* ---------- self-hosted fonts ---------- */
 
-@font-face {
-  font-family: "Azonix";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/azonix-400-latin.woff2") format("woff2"),
-       url("../fonts/Azonix.otf") format("opentype");
-}
+
 
 @font-face {
   font-family: "Anton";
@@ -208,7 +201,7 @@
   --line-dark: rgba(246, 246, 243, 0.18);
   --line-dark-strong: rgba(246, 246, 243, 0.34);
 
-  --font-display: "Azonix", "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Mirage Gothic", "Anton", "Arial Narrow", Impact, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
   --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
