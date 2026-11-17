@@ -12,6 +12,14 @@
 
 
 @font-face {
+  font-family: "Mirage Gothic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/mirage-gothic-400.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Anton";
   font-style: normal;
   font-weight: 400;
