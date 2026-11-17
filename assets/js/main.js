@@ -280,7 +280,15 @@
 
     const render = () => {
       const s = states.find((x) => x.key === current);
-      if (glyph) glyph.textContent = s.glyph;
+      if (glyph) {
+        glyph.style.opacity = "0";
+        glyph.style.transform = "scale(0.85)";
+        window.setTimeout(() => {
+          glyph.textContent = s.glyph;
+          glyph.style.opacity = "1";
+          glyph.style.transform = "scale(1)";
+        }, 80);
+      }
       if (name) name.textContent = s.label;
       themeToggle.setAttribute("aria-label", `Colour theme: ${s.label.toLowerCase()}. Click to change.`);
       if (current === "auto") root.removeAttribute("data-theme");
@@ -338,6 +346,19 @@
     io.observe(ticker);
     document.addEventListener("visibilitychange", () => {
       ticker.style.animationPlayState = document.hidden ? "paused" : "running";
+    });
+  }
+
+
+  /* ---------- form submit loading state ---------- */
+  const form = document.querySelector(".form-grid");
+  if (form) {
+    form.addEventListener("submit", () => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.classList.add("is-loading");
+        btn.setAttribute("aria-busy", "true");
+      }
     });
   }
 
