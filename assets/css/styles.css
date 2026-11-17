@@ -2743,6 +2743,7 @@ body.nav-open .site-header {
 }
 
 .offer-price {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2762,8 +2763,9 @@ body.nav-open .site-header {
 
 .offer-price .amount {
   font-family: var(--font-display);
-  font-size: clamp(38px, 4.2vw, 62px);
-  line-height: 0.9;
+  font-size: clamp(34px, 3.6vw, 54px);
+  line-height: 0.92;
+  overflow-wrap: anywhere;
 }
 
 .offer-price .amount span {
