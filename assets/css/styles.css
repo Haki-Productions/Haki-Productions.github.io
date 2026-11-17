@@ -4193,11 +4193,12 @@ body.nav-open .site-header {
 .footer-wordmark span {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(52px, 13.2vw, 190px);
+  font-size: clamp(32px, 8.5vw, 160px);
   line-height: 0.78;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow: visible;
 }
 
 .footer-bottom {
@@ -4664,7 +4665,7 @@ body.nav-open .site-header {
   .footer-col { display: none; }
   .footer-social { display: inline-flex; }
   .footer-brand { grid-column: auto; }
-  .footer-wordmark span { font-size: clamp(30px, 10.4vw, 52px); }
+  .footer-wordmark span { font-size: clamp(24px, 8vw, 44px); }
   .footer-bottom { flex-direction: column; }
   .footer-bottom a { padding: 8px 0; }
 }
