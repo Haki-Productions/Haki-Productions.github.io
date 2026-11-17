@@ -305,10 +305,10 @@
       }
       const file = resolved === "dark" ? "haki-mark-red.png" : "haki-mark-green.png";
       document.querySelectorAll('img[src*="haki-mark"]').forEach((img) => {
-        img.src = img.src.replace(/haki-mark-(red|green|navy)\.png/, file);
+        img.src = img.src.replace(/haki-mark-(red|green)\.png/, file);
       });
       const favicon = document.querySelector('link[rel="icon"][href*="haki-mark"]');
-      if (favicon) favicon.href = favicon.href.replace(/haki-mark-(red|green|navy)\.png/, file);
+      if (favicon) favicon.href = favicon.href.replace(/haki-mark-(red|green)\.png/, file);
     };
 
     render();
@@ -328,4 +328,17 @@
 
   /* ---------- reduced motion flag (CSS handles the rest) ---------- */
   if (reduceMotion) root.classList.add("reduced-motion");
+
+  /* ---------- pause decorative marquee when offscreen or tab hidden ---------- */
+  const ticker = document.querySelector('.ticker-track');
+  if (ticker && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      ticker.style.animationPlayState = entries[0].isIntersecting && !document.hidden ? "running" : "paused";
+    });
+    io.observe(ticker);
+    document.addEventListener("visibilitychange", () => {
+      ticker.style.animationPlayState = document.hidden ? "paused" : "running";
+    });
+  }
+
 })();
