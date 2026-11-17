@@ -334,7 +334,7 @@
     --muted: oklch(0.73 0.008 92); --muted-dark: oklch(0.48 0.008 92);
     --line: oklch(0.965 0 0 / 0.18); --line-strong: oklch(0.965 0 0 / 0.34);
     --line-dark: oklch(0.142 0 0 / 0.16); --line-dark-strong: oklch(0.142 0 0 / 0.34);
-    --accent-ink: oklch(0.72 0.19 29);
+    --accent-ink: oklch(0.628 0.258 29);
   }
   :root[data-theme="dark"] .dark,
   :root[data-theme="dark"] .dark-page,
@@ -344,7 +344,7 @@
   :root[data-theme="dark"] .site-footer,
   :root[data-theme="dark"] .mag-hero,
   :root[data-theme="dark"] .ticker {
-    --accent-ink: oklch(0.72 0.19 29);
+    --accent-ink: oklch(0.628 0.258 29);
   }
 }
 :root[data-theme="dark"] .dark,
