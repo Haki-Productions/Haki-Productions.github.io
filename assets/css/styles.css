@@ -4185,6 +4185,7 @@ body.nav-open .site-header {
 }
 
 .footer-wordmark {
+  container-type: inline-size;
   overflow: hidden;
   padding: 10px 0 0;
   border-top: 1px solid var(--line-dark);
@@ -4193,7 +4194,10 @@ body.nav-open .site-header {
 .footer-wordmark span {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(32px, 8.5vw, 160px);
+  /* Container-relative so the wordmark always fills .wrap, never overflowing it.
+     vw fallback for browsers without container queries. */
+  font-size: clamp(32px, 8.5vw, 144px);
+  font-size: 10.8cqw;
   line-height: 0.78;
   letter-spacing: -0.03em;
   text-transform: uppercase;
